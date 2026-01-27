@@ -70,7 +70,7 @@
             background-color: var(--light-bg);
         }
 
-        /* Navigation Bar */
+        /* Navigation Bar - FIXED */
         .navbar {
             position: fixed;
             top: 0;
@@ -95,11 +95,11 @@
             margin: 0 auto;
             padding: 0 40px;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
             align-items: center;
         }
 
-        /* Brand */
+        /* Brand - FIXED */
         .brand {
             display: flex;
             align-items: center;
@@ -117,6 +117,7 @@
             width: auto;
             transition: all 0.3s ease;
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+            flex-shrink: 0;
         }
 
         .navbar.scrolled .brand-logo {
@@ -130,6 +131,7 @@
             letter-spacing: -0.5px;
             transition: all 0.3s ease;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            white-space: nowrap;
         }
 
         .navbar.scrolled .brand-text {
@@ -138,7 +140,7 @@
             text-shadow: none;
         }
 
-        /* Main Hero Section - Puso ko, Mahal ko! */
+        /* Main Hero Section - Puso ko, Mahal ko! - FIXED RESPONSIVENESS */
         .main-hero {
             min-height: 100vh;
             background: linear-gradient(135deg, #8B2C8B 0%, #C41E8B 50%, #8B2C8B 100%);
@@ -265,10 +267,11 @@
             height: 120px;
             width: auto;
             filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+            max-width: 100%;
         }
 
         .main-hero-title {
-            font-size: 96px;
+            font-size: clamp(48px, 8vw, 96px);
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 30px;
@@ -277,7 +280,7 @@
         }
 
         .main-hero-subtitle {
-            font-size: 24px;
+            font-size: clamp(14px, 2vw, 24px);
             font-weight: 600;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -961,20 +964,59 @@
             margin: 5px 0;
         }
 
-        /* Responsive Design */
+        /* Responsive Design - ENHANCED */
+        @media (max-width: 1024px) {
+            .nav-container {
+                padding: 0 30px;
+            }
+
+            .brand-text {
+                font-size: 18px;
+            }
+
+            .brand-logo {
+                height: 38px;
+            }
+
+            .main-hero-content {
+                padding-left: 20px;
+            }
+
+            .main-hero-title {
+                font-size: clamp(40px, 7vw, 80px);
+            }
+        }
+
         @media (max-width: 768px) {
+            .nav-container {
+                padding: 0 20px;
+            }
+
+            .brand-text {
+                font-size: 16px;
+                letter-spacing: -0.3px;
+            }
+
+            .brand-logo {
+                height: 34px;
+            }
+
+            .navbar.scrolled .brand-logo {
+                height: 30px;
+            }
+
             .main-hero {
                 padding: 100px 20px 60px;
                 min-height: 85vh;
             }
 
             .main-hero-title {
-                font-size: 48px;
+                font-size: clamp(36px, 10vw, 48px);
                 margin-bottom: 20px;
             }
 
             .main-hero-subtitle {
-                font-size: 14px;
+                font-size: clamp(12px, 3vw, 14px);
                 letter-spacing: 1.5px;
             }
 
@@ -989,7 +1031,7 @@
             }
 
             .main-hero-logo img {
-                height: 80px;
+                height: clamp(60px, 12vw, 80px);
             }
 
             .main-hero::before,
@@ -1218,40 +1260,40 @@
             .footer-credit {
                 font-size: 12px;
             }
-
-            .nav-container {
-                padding: 0 20px;
-            }
-
-            .brand-text {
-                font-size: 18px;
-            }
-
-            .brand-logo {
-                height: 36px;
-            }
-
-            .navbar.scrolled .brand-logo {
-                height: 32px;
-            }
         }
 
         /* Extra small mobile devices */
         @media (max-width: 600px) {
+            .brand {
+                gap: 10px;
+            }
+
+            .brand-text {
+                font-size: 14px;
+            }
+
+            .brand-logo {
+                height: 30px;
+            }
+
+            .navbar.scrolled .brand-logo {
+                height: 26px;
+            }
+
             .main-hero-title {
-                font-size: 60px;
+                font-size: clamp(32px, 12vw, 40px);
             }
 
             .main-hero-subtitle {
-                font-size: 15px;
+                font-size: clamp(11px, 3.5vw, 13px);
             }
 
             .main-hero-logo img {
-                height: 75px;
+                height: clamp(50px, 15vw, 70px);
             }
 
             .hero h1 {
-                font-size: 35px;
+                font-size: 28px;
             }
 
             .hero-subtitle {
@@ -1259,15 +1301,15 @@
             }
 
             .package-name {
-                font-size: 35px;
+                font-size: 24px;
             }
 
             .package-price {
-                font-size: 28px;
+                font-size: 36px;
             }
 
             .reminders-section h2 {
-                font-size: 25px;
+                font-size: 24px;
             }
 
             .reminder-item {
@@ -1285,17 +1327,32 @@
             .location-info h3 {
                 font-size: 22px;
             }
+        }
+
+        /* Extra large screens (16:9 aspect ratio optimization) */
+        @media (min-width: 1920px) {
+            .nav-container {
+                max-width: 1600px;
+            }
 
             .brand-text {
-                font-size: 16px;
+                font-size: 24px;
             }
 
             .brand-logo {
-                height: 32px;
+                height: 48px;
             }
 
-            .navbar.scrolled .brand-logo {
-                height: 28px;
+            .main-hero-content {
+                max-width: 1400px;
+            }
+
+            .main-hero-title {
+                font-size: clamp(96px, 6vw, 110px);
+            }
+
+            .main-hero-subtitle {
+                font-size: clamp(24px, 1.5vw, 28px);
             }
         }
     </style>
@@ -1488,7 +1545,7 @@
                     </div>
                     <div class="form-group" style="flex: 1;">
                         <label>Status</label>
-                        <select name="Civil Status" class="form-control" required>
+                        <select name="Status" class="form-control" required>
                             <option value="">Select</option>
                             <option value="Single">Single</option>
                             <option value="Married">Married</option>
