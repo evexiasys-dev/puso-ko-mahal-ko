@@ -308,6 +308,27 @@
             }
         }
 
+        /* Partnership Section */
+        .partnership-section {
+            background: linear-gradient(135deg, #9B59B6 0%, #8E44AD 50%, #7D3C98 100%);
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+        }
+
+        .partnership-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            padding: 0px 0px;
+        }
+
         /* Hero Section */
         .hero {
             min-height: 65vh;
@@ -795,13 +816,19 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .main-hero {
+                padding: 100px 20px 60px;
+                min-height: 85vh;
+            }
+
             .main-hero-title {
-                font-size: 56px;
+                font-size: 48px;
+                margin-bottom: 20px;
             }
 
             .main-hero-subtitle {
-                font-size: 16px;
-                letter-spacing: 2px;
+                font-size: 14px;
+                letter-spacing: 1.5px;
             }
 
             .main-hero-content {
@@ -810,16 +837,17 @@
             }
 
             .main-hero-logo {
-                margin-bottom: 5px;
+                margin-bottom: 10px;
+                text-align: left;
             }
 
             .main-hero-logo img {
-                height: 70px;
+                height: 80px;
             }
 
             .main-hero::before,
             .main-hero::after {
-                font-size: 80px;
+                font-size: 60px;
             }
 
             .main-hero .heart-deco-3,
@@ -830,44 +858,180 @@
             }
 
             .main-hero .heart-deco-1 {
-                font-size: 70px;
+                font-size: 50px;
+                top: 20%;
+                left: 5%;
             }
 
             .main-hero .heart-deco-2 {
-                font-size: 60px;
+                font-size: 45px;
+                bottom: 25%;
+                right: 5%;
+            }
+
+            .scroll-indicator {
+                bottom: 20px;
+            }
+
+            .scroll-indicator i {
+                font-size: 28px;
+            }
+
+
+            .partnership-section {
+                min-height: 150px;
+            }
+
+            .partnership-image {
+                padding: 10px 10px;
+            }
+
+            .hero {
+                padding: 80px 20px 40px;
+                min-height: 50vh;
             }
 
             .hero h1 {
-                font-size: 36px;
+                font-size: 32px;
+                line-height: 1.2;
             }
 
             .hero-subtitle {
-                font-size: 18px;
+                font-size: 16px;
+            }
+
+            .hero-theme {
+                font-size: 16px;
+                padding: 8px 20px;
+            }
+
+            .content {
+                padding: 40px 20px;
             }
 
             .packages-grid {
                 grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .package-card {
+                padding: 30px 20px;
+            }
+
+            .package-card.premium::after {
+                top: 15px;
+                right: 15px;
+                padding: 6px 15px;
+                font-size: 11px;
+            }
+
+            .package-name {
+                font-size: 28px;
+            }
+
+            .package-price {
+                font-size: 40px;
+            }
+
+            .features-list li {
+                font-size: 15px;
+            }
+
+            .reminders-section {
+                padding: 40px 20px;
+                margin: 40px 0;
+            }
+
+            .reminders-section h2 {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+
+            .reminders-grid {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .reminder-item {
+                font-size: 16px;
+                justify-content: center;
+            }
+
+            .reminder-item i {
+                font-size: 24px;
+                width: 50px;
+                height: 50px;
+                padding: 12px;
+            }
+
+            .details-section {
+                margin-bottom: 40px;
             }
 
             .details-grid {
                 grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .event-info h3 {
+                font-size: 24px;
+            }
+
+            .info-row {
+                font-size: 15px;
+            }
+
+            .info-row i {
+                font-size: 20px;
             }
 
             .lecture-card {
                 flex-direction: column;
                 text-align: center;
+                padding: 25px;
             }
 
-            .reminders-grid {
-                flex-direction: column;
+            .doctor-photo {
+                width: 120px;
+                height: 120px;
+            }
+
+            .doctor-info h4 {
+                font-size: 20px;
+            }
+
+            .registration-section {
+                padding: 40px 20px;
+            }
+
+            .registration-section h1 {
+                font-size: 32px;
+                margin-bottom: 30px;
             }
 
             .form-row {
                 flex-direction: column;
+                gap: 0;
             }
 
             .form-container {
-                padding: 30px 20px;
+                padding: 25px 15px;
+            }
+
+            .form-control {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+
+            .radio-group {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .submit-btn {
+                padding: 15px;
+                font-size: 16px;
             }
 
             .nav-container {
@@ -875,7 +1039,60 @@
             }
 
             .brand-text {
+                font-size: 16px;
+            }
+
+            .favicon {
+                width: 36px;
+                height: 36px;
                 font-size: 18px;
+            }
+        }
+
+        /* Extra small mobile devices */
+        @media (max-width: 480px) {
+            .main-hero-title {
+                font-size: 40px;
+            }
+
+            .main-hero-subtitle {
+                font-size: 12px;
+            }
+
+            .main-hero-logo img {
+                height: 60px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero-subtitle {
+                font-size: 14px;
+            }
+
+            .package-name {
+                font-size: 24px;
+            }
+
+            .package-price {
+                font-size: 36px;
+            }
+
+            .reminders-section h2 {
+                font-size: 24px;
+            }
+
+            .reminder-item {
+                font-size: 14px;
+            }
+
+            .registration-section h1 {
+                font-size: 28px;
+            }
+
+            .brand-text {
+                font-size: 14px;
             }
         }
     </style>
@@ -887,7 +1104,7 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="brand">
-                <div class="favicon">E</div>
+                <img src="favicon.png" alt="Logo" style="width: 5%; height: 5%; object-fit: contain;">
                 <span class="brand-text">February at Evexia</span>
             </div>
         </div>
@@ -915,6 +1132,11 @@
         <div class="scroll-indicator">
             <i class="fas fa-chevron-down"></i>
         </div>
+    </section>
+
+    <!-- Partnership Section -->
+    <section class="partnership-section">
+        <img src="qualicheck.png" alt="In Partnership with QualiCheck Mobile Laboratory" class="partnership-image">
     </section>
 
     <!-- Hero Section -->
