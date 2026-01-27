@@ -78,30 +78,15 @@
             transform: translateY(-2px);
         }
 
-        .favicon {
-            width: 44px;
+        .brand-logo {
             height: 44px;
-            background: linear-gradient(135deg, var(--primary-red) 0%, var(--dark-red) 100%);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 800;
-            font-size: 22px;
-            box-shadow: var(--shadow-sm);
+            width: auto;
             transition: all 0.3s ease;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
         }
 
-        .navbar.scrolled .favicon {
-            width: 38px;
+        .navbar.scrolled .brand-logo {
             height: 38px;
-            font-size: 20px;
-        }
-
-        .brand:hover .favicon {
-            box-shadow: var(--shadow-md);
-            transform: rotate(-5deg);
         }
 
         .brand-text {
@@ -110,11 +95,13 @@
             color: white;
             letter-spacing: -0.5px;
             transition: all 0.3s ease;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .navbar.scrolled .brand-text {
             color: var(--text-dark);
             font-size: 20px;
+            text-shadow: none;
         }
 
         /* Main Hero Section - Puso ko, Mahal ko! */
@@ -1039,13 +1026,15 @@
             }
 
             .brand-text {
-                font-size: 16px;
+                font-size: 18px;
             }
 
-            .favicon {
-                width: 36px;
+            .brand-logo {
                 height: 36px;
-                font-size: 18px;
+            }
+            
+            .navbar.scrolled .brand-logo {
+                height: 32px;
             }
         }
 
@@ -1092,7 +1081,15 @@
             }
 
             .brand-text {
-                font-size: 14px;
+                font-size: 16px;
+            }
+            
+            .brand-logo {
+                height: 32px;
+            }
+            
+            .navbar.scrolled .brand-logo {
+                height: 28px;
             }
         }
     </style>
@@ -1104,7 +1101,7 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="brand">
-                <img src="favicon.png" alt="Logo" style="width: 5%; height: 3%; object-fit: contain;">
+                <img src="favicon.png" alt="Evexia Logo" class="brand-logo">
                 <span class="brand-text">February at Evexia</span>
             </div>
         </div>
