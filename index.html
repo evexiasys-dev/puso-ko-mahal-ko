@@ -918,6 +918,73 @@
             border: none;
         }
 
+        /* Social Media Section */
+        .social-section {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+            padding: 80px 40px;
+            color: white;
+            text-align: center;
+        }
+
+        .social-section h2 {
+            font-size: 42px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .social-description {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            line-height: 1.8;
+            opacity: 0.95;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .social-link i {
+            font-size: 28px;
+        }
+
+        .social-link.facebook:hover {
+            background: #1877F2;
+            border-color: #1877F2;
+        }
+
+        .social-link.instagram:hover {
+            background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4);
+            border-color: #DD2A7B;
+        }
+
         /* Footer */
         .footer {
             background: linear-gradient(135deg, var(--text-dark) 0%, #1a1d1f 100%);
@@ -1249,6 +1316,33 @@
                 height: 350px;
             }
 
+            .social-section {
+                padding: 40px 20px;
+            }
+
+            .social-section h2 {
+                font-size: 32px;
+            }
+
+            .social-description {
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .social-link {
+                padding: 18px 30px;
+                font-size: 16px;
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
             .footer {
                 padding: 25px 20px;
             }
@@ -1322,6 +1416,19 @@
 
             .navbar.scrolled .brand-logo {
                 height: 28px;
+            }
+
+            .social-section h2 {
+                font-size: 28px;
+            }
+
+            .social-description {
+                font-size: 15px;
+            }
+
+            .social-link {
+                font-size: 15px;
+                padding: 15px 25px;
             }
         }
 
@@ -1628,6 +1735,27 @@
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>
+        </div>
+    </section>
+
+    <!-- Social Media Section -->
+    <section class="social-section">
+        <h2>Stay Connected With Us</h2>
+        <p class="social-description">
+            Become part of our wellness community and nourish your mind, body, and soul. Stay inspired with holistic
+            health tips, healing programs, and meaningful events designed to support your journey from within. Follow us
+            on social media for gentle reminders, empowering content, and special updates — because true wellness begins
+            inside.
+        </p>
+        <div class="social-links">
+            <a href="https://www.facebook.com/evexiawellnesscenter.ph" target="_blank" class="social-link facebook">
+                <i class="fab fa-facebook"></i>
+                <span>Follow us on Facebook</span>
+            </a>
+            <a href="https://www.instagram.com/evexiawellnesscenter" target="_blank" class="social-link instagram">
+                <i class="fab fa-instagram"></i>
+                <span>Follow us on Instagram</span>
+            </a>
         </div>
     </section>
 
