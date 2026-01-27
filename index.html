@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +9,10 @@
     <style>
         /* --- BRAND COLORS BASED ON LOGO --- */
         :root {
-            --brand-red: #E63946; /* Matching the red figure */
-            --brand-green: #4CAF50; /* Matching the green leaf */
+            --brand-red: #E63946;
+            /* Matching the red figure */
+            --brand-green: #4CAF50;
+            /* Matching the green leaf */
             --text-dark: #333333;
             --text-light: #666666;
             --bg-offwhite: #f9fbf9;
@@ -26,7 +29,9 @@
             line-height: 1.6;
         }
 
-        h1, h2, h3 {
+        h1,
+        h2,
+        h3 {
             margin: 0;
             padding: 0;
         }
@@ -37,10 +42,21 @@
             padding: 20px;
         }
 
-        .text-center { text-align: center; }
-        .text-bold { font-weight: 700; }
-        .text-red { color: var(--brand-red); }
-        .text-green { color: var(--brand-green); }
+        .text-center {
+            text-align: center;
+        }
+
+        .text-bold {
+            font-weight: 700;
+        }
+
+        .text-red {
+            color: var(--brand-red);
+        }
+
+        .text-green {
+            color: var(--brand-green);
+        }
 
         /* --- SECTION 1: HERO (Front Page Top) --- */
         header {
@@ -116,7 +132,7 @@
         .package-card {
             background: var(--white);
             border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             padding: 30px;
             border-top: 5px solid var(--text-light);
             transition: transform 0.3s ease;
@@ -208,7 +224,7 @@
         .reminder-item i {
             font-size: 1.5rem;
             margin-right: 10px;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             padding: 10px;
             border-radius: 50%;
         }
@@ -249,7 +265,8 @@
         }
 
         .lecture-card {
-            background: #f0fdf4; /* Very light green */
+            background: #f0fdf4;
+            /* Very light green */
             border: 1px solid #dcfce7;
             border-radius: 15px;
             padding: 25px;
@@ -264,9 +281,10 @@
             background-color: #ddd;
             border-radius: 50%;
             border: 4px solid white;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             flex-shrink: 0;
-            background-image: url('https://i.imgur.com/ZJGkFRp.png'); /* Placeholder for Dr Photo */
+            background-image: url('https://i.imgur.com/ZJGkFRp.png');
+            /* Placeholder for Dr Photo */
             background-size: cover;
             background-position: center;
         }
@@ -276,7 +294,7 @@
             color: var(--brand-red);
             margin-bottom: 5px;
         }
-        
+
         .doctor-title {
             font-weight: bold;
             color: var(--text-dark);
@@ -301,7 +319,7 @@
             border-radius: 10px;
             max-width: 600px;
             margin: 0 auto;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
 
         .form-group {
@@ -326,6 +344,7 @@
             border: 1px solid #ccc;
             border-radius: 6px;
             font-size: 1rem;
+            box-sizing: border-box;
         }
 
         .radio-group {
@@ -372,24 +391,48 @@
             color: var(--text-light);
         }
 
+        /* Gray state when disabled */
+        .submit-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
         /* --- RESPONSIVE DESIGN --- */
         @media (max-width: 768px) {
-            .hero-title { font-size: 2rem; }
-            .packages-grid { grid-template-columns: 1fr; }
-            .details-grid { grid-template-columns: 1fr; }
-            .lecture-card { flex-direction: column; text-align: center; }
-            .reminders-grid { flex-direction: column; align-items: flex-start; }
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lecture-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .reminders-grid {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <header class="text-center">
         <div class="container">
-            
+
             <h1 class="hero-title">Heart Month Health Screening</h1>
             <p class="hero-subtitle">Blood Chemistry • FREE ECG • FREE Consultation</p>
-            
+
             <div class="hero-theme">
                 <span style="font-size: 0.9em; font-weight: normal;">Be Kind to Your Heart!</span>
             </div>
@@ -399,7 +442,7 @@
     <section class="packages-section">
         <div class="container">
             <div class="packages-grid">
-                
+
                 <div class="package-card">
                     <h3 class="package-name">Package A</h3>
                     <strong class="package-price">₱600.00</strong>
@@ -465,7 +508,7 @@
     <section class="details-section">
         <div class="container">
             <div class="details-grid">
-                
+
                 <div class="event-info">
                     <h3>Event Details</h3>
                     <div class="info-row">
@@ -480,15 +523,18 @@
                         <div>
                             <strong>Venue:</strong><br>
                             Evexia Health & Wellness Center<br>
-                            <span style="font-size: 0.9rem; color: #666;">RSBS Boulevard, Brgy. Dita, Sta. Rosa City, Laguna<br>(Near Segovia Homes Entrance)</span>
+                            <span style="font-size: 0.9rem; color: #666;">RSBS Boulevard, Brgy. Dita, Sta. Rosa City,
+                                Laguna<br>(Near Segovia Homes Entrance)</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="lecture-info">
                     <div class="lecture-card">
-                        <div class="doctor-photo"></div> <div class="doctor-info">
-                            <div style="text-transform: uppercase; color: var(--brand-green); font-weight: bold; font-size: 0.9rem; margin-bottom: 5px;">
+                        <div class="doctor-photo"></div>
+                        <div class="doctor-info">
+                            <div
+                                style="text-transform: uppercase; color: var(--brand-green); font-weight: bold; font-size: 0.9rem; margin-bottom: 5px;">
                                 <i class="far fa-clock"></i> 2:00 PM – Health Talk
                             </div>
                             <h4>“Be Kind to Your Heart”</h4>
@@ -504,100 +550,128 @@
 
     <section class="registration-section">
         <div class="container">
-            <h2 class="text-center text-red" style="margin-bottom: 30px;">Participant Registration</h2>
-            
+            <h1 class="text-center text-red" style="margin-bottom: 30px;">Participant Registration</h1>
+
             <div class="form-container">
                 <form name="submit-to-google-sheet" id="registrationForm">
-    <div class="form-group">
-        <label>Full Name</label>
-        <input type="text" name="Name" class="form-control" placeholder="Enter your full name" required>
-    </div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" name="Name" class="form-control" placeholder="Enter your full name" required>
+                    </div>
 
-    <div class="form-row">
-        <div class="form-group" style="flex: 1;">
-            <label>Age</label>
-            <input type="number" name="Age" class="form-control" required>
-        </div>
-        <div class="form-group" style="flex: 1;">
-            <label>Sex</label>
-            <select name="Sex" class="form-control">
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-            </select>
-        </div>
-        <div class="form-group" style="flex: 1;">
-            <label>Status</label>
-            <select name="Civil Status" class="form-control">
-                <option value="Single">Single</option>
-                <option value="Married">Married</option>
-                <option value="Widowed">Widowed</option>
-            </select>
-        </div>
-    </div>
+                    <div class="form-row">
+                        <div class="form-group" style="flex: 1;">
+                            <label>Age</label>
+                            <input type="number" name="Age" class="form-control" required>
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label>Sex</label>
+                            <select name="Sex" class="form-control" required>
+                                <option value="">Select</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label>Status</label>
+                            <select name="Civil Status" class="form-control" required>
+                                <option value="">Select</option>
+                                <option value="Single">Single</option>
+                                <option value="Married">Married</option>
+                                <option value="Widowed">Widowed</option>
+                            </select>
+                        </div>
+                    </div>
 
-    <div class="form-group">
-        <label>Address</label>
-        <input type="text" name="Address" class="form-control" placeholder="Complete Address" required>
-    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" name="Address" class="form-control" placeholder="Complete Address" required>
+                    </div>
 
-    <div class="form-group">
-        <label>Contact No.</label>
-        <input type="tel" name="Contact" class="form-control" placeholder="09XX-XXX-XXXX" required>
-    </div>
+                    <div class="form-group">
+                        <label>Contact No.</label>
+                        <input type="tel" name="Contact" class="form-control" placeholder="09XX-XXX-XXXX" required>
+                    </div>
 
-    <div class="form-group">
-        <label>Choose Package:</label>
-        <div class="radio-group">
-            <label class="radio-option">
-                <input type="radio" name="Package" value="Package A (600)" required> 
-                <span>Package A</span>
-            </label>
-            <label class="radio-option">
-                <input type="radio" name="Package" value="Package B (850)"> 
-                <span>Package B</span>
-            </label>
-        </div>
-    </div>
+                    <div class="form-group">
+                        <label>Choose Package:</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="Package" value="Package A (600)" required>
+                                <span>Package A</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="Package" value="Package B (850)" required>
+                                <span>Package B</span>
+                            </label>
+                        </div>
+                    </div>
 
-    <div id="form-status" style="margin-bottom: 15px; font-weight: bold;"></div>
+                    <div id="form-status" style="margin-bottom: 15px; font-weight: bold; text-align: center;"></div>
 
-    <button type="submit" class="submit-btn" id="submitBtn">PRE-REGISTER NOW</button>
-
-    </form>
-
-<script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwKLy62El6ur3lf3UgewWtU3keHoaEbem8lPMIzGza9fzCoc2nVWn8myGl5qPTUGgq9/exec'; // <--- PASTE HERE
-    const form = document.forms['submit-to-google-sheet'];
-    const statusMsg = document.getElementById('form-status');
-    const submitBtn = document.getElementById('submitBtn');
-
-    form.addEventListener('submit', e => {
-        e.preventDefault();
-        
-        // Disable button to prevent double clicks
-        submitBtn.disabled = true;
-        submitBtn.innerText = "Sending...";
-        statusMsg.innerText = "";
-
-        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-            .then(response => {
-                statusMsg.style.color = "green";
-                statusMsg.innerText = "✅ Success! You are registered.";
-                submitBtn.innerText = "Registered";
-                form.reset();
-            })
-            .catch(error => {
-                statusMsg.style.color = "red";
-                statusMsg.innerText = "❌ Error! Please try again.";
-                submitBtn.disabled = false;
-                submitBtn.innerText = "PRE-REGISTER NOW";
-                console.error('Error!', error.message);
-            });
-    });
-</script>
+                    <button type="submit" class="submit-btn" id="submitBtn" disabled>PRE-REGISTER NOW</button>
+                </form>
             </div>
         </div>
     </section>
 
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbwKLy62El6ur3lf3UgewWtU3keHoaEbem8lPMIzGza9fzCoc2nVWn8myGl5qPTUGgq9/exec';
+        const form = document.forms['submit-to-google-sheet'];
+        const statusMsg = document.getElementById('form-status');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // --- LOGIC TO ENABLE/DISABLE BUTTON ---
+        const inputs = form.querySelectorAll('input[required], select[required]');
+
+        function checkForm() {
+            let isComplete = true;
+            inputs.forEach(input => {
+                if (input.type === 'radio') {
+                    const radioName = input.name;
+                    const checked = form.querySelector(`input[name="${radioName}"]:checked`);
+                    if (!checked) isComplete = false;
+                } else {
+                    if (!input.value.trim()) isComplete = false;
+                }
+            });
+            submitBtn.disabled = !isComplete;
+        }
+
+        // Listen for typing or clicking anywhere in the form
+        form.addEventListener('input', checkForm);
+        form.addEventListener('change', checkForm);
+
+        // --- FORM SUBMISSION ---
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Sending...";
+            statusMsg.innerText = "";
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => {
+                    statusMsg.style.color = "green";
+                    statusMsg.innerText = "✅ Success! You are registered.";
+                    submitBtn.innerText = "Registered Successfully";
+                    form.reset();
+                    // Keep button disabled after success
+                    submitBtn.disabled = true;
+                })
+                .catch(error => {
+                    statusMsg.style.color = "red";
+                    statusMsg.innerText = "❌ Error! Please try again.";
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = "PRE-REGISTER NOW";
+                    console.error('Error!', error.message);
+                });
+        });
+    </script>
+    </div>
+    </div>
+    </section>
+
 </body>
+
 </html>
