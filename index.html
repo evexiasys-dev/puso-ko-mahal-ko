@@ -722,6 +722,37 @@
             letter-spacing: 0.5px;
         }
 
+        /* News Banner Section */
+        .news-banner-section {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+            padding: 20px 0;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-banner-content {
+            text-align: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.6;
+            }
+        }
+
         /* Registration Section */
         .registration-section {
             background: var(--light-bg);
@@ -1432,6 +1463,20 @@
             }
         }
 
+        @media (max-width: 768px) {
+            .news-banner-content {
+                font-size: 14px;
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .news-banner-content {
+                font-size: 13px;
+                padding: 0 15px;
+            }
+        }
+
         /* Extra large screens (16:9 aspect ratio optimization) */
         @media (min-width: 1920px) {
             .nav-container {
@@ -1615,6 +1660,13 @@
             </div>
         </section>
     </div>
+
+    <!-- News Banner Section -->
+    <section class="news-banner-section">
+        <div class="news-banner-content">
+            Sign up online now—no payment needed yet. We'll collect payment on the day of the health screening.
+        </div>
+    </section>
 
     <!-- Registration Section -->
     <section class="registration-section">
