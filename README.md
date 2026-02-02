@@ -1,6 +1,6 @@
 <div align="center">
 
-# 💚 Puso ko, Mahal ko!
+# Puso ko, Mahal ko!
 
 ### Heart Month Health Screening Landing Page
 
@@ -198,39 +198,6 @@ The registration form submits data to Google Sheets via Apps Script.
 2. **Create an Apps Script**
    - Open your spreadsheet
    - Click **Extensions** → **Apps Script**
-   - Paste the following code:
-
-   ```javascript
-   function doPost(e) {
-     try {
-       var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-       var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
-       
-       if (headers.length === 0 || headers[0] === '') {
-         headers = ['Name', 'Age', 'Sex', 'Status', 'Email', 'Address', 'Contact', 'Package', 'Timestamp'];
-         sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
-       }
-       
-       var newRow = [];
-       for (var i = 0; i < headers.length; i++) {
-         if (headers[i] === 'Timestamp') {
-           newRow.push(new Date());
-         } else {
-           newRow.push(e.parameter[headers[i]] || '');
-         }
-       }
-       
-       sheet.appendRow(newRow);
-       
-       return ContentService.createTextOutput(JSON.stringify({'result':'success'}))
-         .setMimeType(ContentService.MimeType.JSON);
-         
-     } catch(error) {
-       return ContentService.createTextOutput(JSON.stringify({'result':'error', 'error': error.toString()}))
-         .setMimeType(ContentService.MimeType.JSON);
-     }
-   }
-   ```
 
 3. **Deploy as Web App**
    - Click **Deploy** → **New deployment**
@@ -353,7 +320,6 @@ SPDX-License-Identifier: MIT
 ## 📞 Contact
 
 **Evexia Wellness Center**
-- Website: [evexiawellnesscenter.ph](https://evexiawellnesscenter.ph)
 - Facebook: [@evexiawellnesscenter.ph](https://www.facebook.com/evexiawellnesscenter.ph)
 - Instagram: [@evexiawellnesscenter](https://www.instagram.com/evexiawellnesscenter/)
 
