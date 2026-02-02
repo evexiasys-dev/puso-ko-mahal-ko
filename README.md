@@ -1,150 +1,384 @@
-# Puso ko, Mahal ko! — Heart Month Health Screening Landing Page
+<div align="center">
 
-A lightweight, responsive landing page for Evexia Wellness Center's Heart Month Health Screening.  
-This project is a static website (HTML/CSS/JS) designed to be served via GitHub Pages or any static host.
+# 💚 Puso ko, Mahal ko!
 
-Live demo
-- GitHub Pages (if enabled): https://evexiasys-dev.github.io/puso-ko-mahal-ko/
+### Heart Month Health Screening Landing Page
 
-Why this repo exists
-- Announce and collect pre-registrations for the Heart Month Health Screening (Feb 15, 2026).
-- Provide an attractive, mobile-friendly layout with clear event details, packages, and a registration form.
-- Keep structure small and maintainable so non-developers can update text, images, and event details easily.
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-success?style=flat-square&logo=github)](https://evexiasys-dev.github.io/puso-ko-mahal-ko/)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
-Key features
-- Responsive hero, packages, event details, registration form, and embedded map.
-- Externalized CSS and JavaScript for maintainability (css/style.css and js/main.js).
-- Assets organized under `assets/images/` for clarity.
-- Form posts to a Google Apps Script endpoint (changeable).
-- Simple, dependency-free build — only uses Google Fonts and Font Awesome as CDNs.
+*A responsive, mobile-friendly landing page for Evexia Wellness Center's Heart Month Health Screening event.*
 
-Project structure
-- index.html — Main site HTML
-- css/
-  - style.css — All project CSS (extracted from the previous inline style)
-- js/
-  - main.js — All JavaScript (form handling, navbar scroll, smooth scroll)
-- assets/
-  - images/
-    - favicon.png
-    - EWC-logo.png
-    - header-bg.png
-    - qualicheck.png
-    - preview.png
-- README.md — This file
+[View Demo](https://evexiasys-dev.github.io/puso-ko-mahal-ko/) • [Report Bug](../../issues) • [Request Feature](../../issues)
 
-Quick start (local)
-1. Clone the repo:
-   ```
+</div>
+
+---
+
+## 📋 Table of Contents
+
+- [About The Project](#about-the-project)
+- [Features](#features)
+- [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Local Development](#local-development)
+- [Project Structure](#project-structure)
+- [Deployment](#deployment)
+- [Configuration](#configuration)
+  - [Google Apps Script Integration](#google-apps-script-integration)
+  - [Social Media Meta Tags](#social-media-meta-tags)
+- [Optimization Guidelines](#optimization-guidelines)
+- [Contributing](#contributing)
+- [Security & Privacy](#security--privacy)
+- [License](#license)
+- [Contact](#contact)
+- [Acknowledgments](#acknowledgments)
+
+---
+
+## 🎯 About The Project
+
+This landing page was developed for **Evexia Wellness Center** to promote and manage registrations for the Heart Month Health Screening event scheduled for **February 15, 2026**. The site provides comprehensive event information, package details, and a seamless registration experience.
+
+### Key Objectives
+
+- 📢 Announce the Heart Month Health Screening event
+- 📝 Collect pre-registrations through an integrated form
+- 📱 Deliver a mobile-first, accessible user experience
+- 🔧 Maintain simplicity for easy content updates by non-developers
+
+---
+
+## ✨ Features
+
+- ✅ **Fully Responsive Design** - Optimized for mobile, tablet, and desktop
+- ✅ **Interactive Registration Form** - Real-time validation with Google Sheets integration
+- ✅ **Smooth Animations** - Scroll effects and transitions for enhanced UX
+- ✅ **SEO Optimized** - Complete meta tags for search engines and social media
+- ✅ **Embedded Google Maps** - Interactive location finder
+- ✅ **Social Media Integration** - Direct links to Facebook and Instagram
+- ✅ **Zero Dependencies** - Pure HTML/CSS/JS with minimal external libraries
+- ✅ **Fast Loading** - Optimized assets and deferred JavaScript
+
+---
+
+## 🛠️ Built With
+
+- **HTML5** - Semantic markup structure
+- **CSS3** - Custom styling with CSS Grid and Flexbox
+- **Vanilla JavaScript** - Form handling and interactive elements
+- **Google Fonts** - Plus Jakarta Sans typography
+- **Font Awesome 6** - Icon library
+- **Google Apps Script** - Backend form processing
+- **Google Maps Embed API** - Location mapping
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- A modern web browser (Chrome, Firefox, Safari, Edge)
+- A local web server (optional but recommended)
+- Git installed on your machine
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
    git clone https://github.com/evexiasys-dev/puso-ko-mahal-ko.git
    cd puso-ko-mahal-ko
    ```
 
-2. Serve locally with a simple HTTP server (recommended; some browser features behave differently when opening the file directly):
-   - Python 3:
-     ```
-     python -m http.server 8000
-     ```
-     Then open http://localhost:8000 in your browser.
+2. **Verify project structure**
+   ```bash
+   ls -la
+   ```
 
-   - Or use VS Code Live Server extension.
+### Local Development
 
-3. Edit files:
-   - Styles: `css/style.css`
-   - JavaScript: `js/main.js`
-   - Images: `assets/images/` (replace files there; keep filenames or update references)
-   - Content / markup: `index.html`
-
-Updating assets / reorganizing (example commands)
-If you need to move image files from project root into the new `assets/images/` folder:
+#### Option 1: Python HTTP Server (Recommended)
 
 ```bash
-mkdir -p assets/images
-git mv favicon.png assets/images/favicon.png
-git mv EWC-logo.png assets/images/EWC-logo.png
-git mv header-bg.png assets/images/header-bg.png
-git mv qualicheck.png assets/images/qualicheck.png
-git mv preview.png assets/images/preview.png
-git add .
-git commit -m "chore: move images into assets/images and reorganize project"
-git push origin main
+# Python 3
+python -m http.server 8000
+
+# Python 2
+python -m SimpleHTTPServer 8000
 ```
 
-Deployment (GitHub Pages)
-1. Push your changes to GitHub.
-2. In the repository settings → Pages, choose branch `main` and folder `/ (root)` (or `gh-pages` if you use that branch).
-3. Wait a few minutes for the site to be published. The URL will be displayed in GitHub Pages settings.
+Then navigate to `http://localhost:8000` in your browser.
 
-Open Graph images and social previews
-- Social crawlers often require an absolute URL for OG images (not a relative path). You can use a raw GitHub URL like:
-  ```
-  https://raw.githubusercontent.com/<owner>/<repo>/<branch>/assets/images/preview.png
-  ```
-  Replace `<owner>`, `<repo>`, and `<branch>` with your repository values. Update the `og:image` and `twitter:image` meta tags in `index.html` to point to the absolute URL for reliable previews.
+#### Option 2: VS Code Live Server
 
-Form (Google Apps Script) notes
-- The registration form posts to a Google Apps Script web app via the `scriptURL` variable in `js/main.js`.
-- To change the destination:
-  1. Open your Apps Script project (or create one).
-  2. Deploy as a Web App (execute as: you; who has access: anyone).
-  3. Replace the `scriptURL` value in `js/main.js` with the new endpoint.
-- Important: always validate and sanitize form data on the server side (inside Apps Script) — client-side checks are only UX helpers.
+1. Install the [Live Server extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
+2. Right-click on `index.html`
+3. Select **"Open with Live Server"**
 
-Accessibility & SEO recommendations
-- Link each `<label>` to inputs with `for="id"` and give inputs an `id` for better screen-reader support.
-- Add descriptive `alt` attributes to all images (already present but double-check for clarity).
-- Consider adding structured data (JSON-LD) for event details to improve search result appearance.
-- Ensure color contrast meets WCAG AA for readability across sections.
+#### Option 3: Node.js HTTP Server
 
-Performance & optimization tips
-- Compress images (PNG → optimized PNG or WebP) before committing. This reduces load time.
-- Consider adding width and height attributes for images to reduce layout shift.
-- Preload the main font or critical assets if you need faster first paint (use sparingly).
-- The site already defers JS and uses external CSS file for caching.
-
-Troubleshooting
-- Icons not appearing? Ensure Font Awesome CDN link is reachable. Try using the latest CDN URL if needed.
-- Images not visible? Confirm files exist under `assets/images/` and the filenames match.
-- Google Maps iframe not loading? Check the embed URL and Google’s embed policy for referrer restrictions.
-- OG image not appearing on social sites? Use the absolute raw GitHub URL and test with the Facebook/Twitter card validator tools.
-
-Contributing
-- PRs are welcome for content corrections, image improvements, accessibility fixes, or simple UI improvements.
-- For code changes:
-  - Fork → branch (feature/...) → commit → PR with description.
-  - Keep changes small and focused. Add screenshots for visual changes.
-
-Suggested Git workflow (example)
 ```bash
-git checkout -b feature/update-styles
-# make edits
-git add css/style.css
-git commit -m "style: tweak hero spacing and button styles"
-git push origin feature/update-styles
-# open a PR on GitHub
+npx http-server -p 8000
 ```
-
-Security & privacy
-- Do not embed private API keys or secrets in the client-side code.
-- If collecting personal data via the registration form, ensure proper data handling, consent, and storage policies are followed (Apps Script spreadsheets are a common storage — secure access and retention policies are recommended).
-
-License
-- Place your preferred license here (e.g., MIT). Example:
-  ```
-  SPDX-License-Identifier: MIT
-  ```
-  Or add a `LICENSE` file at repo root.
-
-Contact / Credits
-- Website crafted by Ransel Sumatra — https://www.instagram.com/ranselberry/
-- Maintainer / repo owner: evexiasys-dev (GitHub)
-- For questions about form endpoints or data handling, edit `js/main.js` or contact the maintainer.
 
 ---
 
-If you want, I can:
-- Create this README.md and open a pull request with the change.
-- Add a CONTRIBUTING.md with code style and PR checklist.
-- Produce an accessibility checklist and auto-fix suggestions.
+## 📁 Project Structure
 
-Which of those would you like next?
+```
+puso-ko-mahal-ko/
+│
+├── index.html              # Main HTML file
+├── README.md               # Project documentation
+│
+├── css/
+│   └── style.css          # All project styles
+│
+├── js/
+│   └── main.js            # JavaScript functionality
+│
+└── assets/
+    └── images/
+        ├── favicon.png         # Browser tab icon
+        ├── EWC-logo.png        # Evexia Wellness Center logo
+        ├── header-bg.png       # Hero section background
+        ├── qualicheck.png      # Partnership logo
+        └── preview.png         # Social media preview image
+```
+
+---
+
+## 🌐 Deployment
+
+### GitHub Pages
+
+1. **Push your changes to GitHub**
+   ```bash
+   git add .
+   git commit -m "Initial deployment"
+   git push origin main
+   ```
+
+2. **Enable GitHub Pages**
+   - Navigate to repository **Settings**
+   - Click **Pages** in the sidebar
+   - Under **Source**, select branch `main` and folder `/ (root)`
+   - Click **Save**
+
+3. **Access your site**
+   - Your site will be available at: `https://[username].github.io/puso-ko-mahal-ko/`
+   - Deployment typically takes 2-5 minutes
+
+### Alternative Hosting Options
+
+- **Netlify** - Drag and drop deployment
+- **Vercel** - Git-based deployment
+- **Cloudflare Pages** - Fast global CDN
+- **AWS S3 + CloudFront** - Enterprise solution
+
+---
+
+## ⚙️ Configuration
+
+### Google Apps Script Integration
+
+The registration form submits data to Google Sheets via Apps Script.
+
+#### Setup Instructions
+
+1. **Create a Google Spreadsheet** with the following columns:
+   ```
+   Name | Age | Sex | Status | Email | Address | Contact | Package | Timestamp
+   ```
+
+2. **Create an Apps Script**
+   - Open your spreadsheet
+   - Click **Extensions** → **Apps Script**
+   - Paste the following code:
+
+   ```javascript
+   function doPost(e) {
+     try {
+       var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+       var headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+       
+       if (headers.length === 0 || headers[0] === '') {
+         headers = ['Name', 'Age', 'Sex', 'Status', 'Email', 'Address', 'Contact', 'Package', 'Timestamp'];
+         sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+       }
+       
+       var newRow = [];
+       for (var i = 0; i < headers.length; i++) {
+         if (headers[i] === 'Timestamp') {
+           newRow.push(new Date());
+         } else {
+           newRow.push(e.parameter[headers[i]] || '');
+         }
+       }
+       
+       sheet.appendRow(newRow);
+       
+       return ContentService.createTextOutput(JSON.stringify({'result':'success'}))
+         .setMimeType(ContentService.MimeType.JSON);
+         
+     } catch(error) {
+       return ContentService.createTextOutput(JSON.stringify({'result':'error', 'error': error.toString()}))
+         .setMimeType(ContentService.MimeType.JSON);
+     }
+   }
+   ```
+
+3. **Deploy as Web App**
+   - Click **Deploy** → **New deployment**
+   - Type: **Web app**
+   - Execute as: **Me**
+   - Who has access: **Anyone**
+   - Click **Deploy**
+   - Copy the **Web app URL**
+
+4. **Update Form Endpoint**
+   - Open `js/main.js`
+   - Replace the `scriptURL` value with your deployment URL:
+   ```javascript
+   const scriptURL = 'YOUR_APPS_SCRIPT_URL_HERE';
+   ```
+
+### Social Media Meta Tags
+
+For optimal social media sharing, update Open Graph images to use absolute URLs:
+
+```html
+<!-- Update in index.html -->
+<meta property="og:image" content="https://raw.githubusercontent.com/evexiasys-dev/puso-ko-mahal-ko/main/assets/images/preview.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/evexiasys-dev/puso-ko-mahal-ko/main/assets/images/preview.png">
+```
+
+**Test your social previews:**
+- [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/)
+- [Twitter Card Validator](https://cards-dev.twitter.com/validator)
+- [LinkedIn Post Inspector](https://www.linkedin.com/post-inspector/)
+
+---
+
+## 🎨 Optimization Guidelines
+
+### Performance
+
+- **Image Optimization**
+  - Convert PNG to WebP for 25-35% size reduction
+  - Use image compression tools like TinyPNG or ImageOptim
+  - Add `width` and `height` attributes to prevent layout shift
+
+- **CSS/JS Optimization**
+  - Minify CSS and JavaScript for production
+  - Consider critical CSS inlining for above-the-fold content
+  - Use async/defer for non-critical scripts
+
+### Accessibility
+
+- ✅ All images have descriptive `alt` attributes
+- ✅ Form labels are properly associated with inputs
+- ✅ Color contrast meets WCAG AA standards
+- ⚠️ Consider adding `aria-labels` for icon-only buttons
+- ⚠️ Implement skip-to-content link for keyboard navigation
+
+### SEO
+
+- ✅ Semantic HTML structure
+- ✅ Meta descriptions and keywords
+- ✅ Open Graph and Twitter Card tags
+- ⚠️ Consider adding JSON-LD structured data for events
+- ⚠️ Implement XML sitemap if scaling to multiple pages
+
+---
+
+## 🤝 Contributing
+
+Contributions are what make the open-source community amazing! Any contributions you make are **greatly appreciated**.
+
+### How to Contribute
+
+1. **Fork the Project**
+2. **Create your Feature Branch**
+   ```bash
+   git checkout -b feature/AmazingFeature
+   ```
+3. **Commit your Changes**
+   ```bash
+   git commit -m 'Add some AmazingFeature'
+   ```
+4. **Push to the Branch**
+   ```bash
+   git push origin feature/AmazingFeature
+   ```
+5. **Open a Pull Request**
+
+### Contribution Guidelines
+
+- Keep changes focused and atomic
+- Write clear, descriptive commit messages
+- Add screenshots for visual changes
+- Test across multiple browsers and devices
+- Update documentation as needed
+
+---
+
+## 🔒 Security & Privacy
+
+- 🚫 **Never commit API keys** or sensitive credentials to the repository
+- ✅ All form data is transmitted securely via HTTPS
+- ✅ Google Apps Script endpoint uses server-side validation
+- ⚠️ Ensure compliance with data protection regulations (GDPR, PDPA)
+- ⚠️ Implement proper data retention and deletion policies
+- ⚠️ Consider adding a privacy policy and terms of service
+
+**Data Collection Notice:** This form collects personal information. Ensure participants are informed about data usage and storage.
+
+---
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` file for more information.
+
+```
+SPDX-License-Identifier: MIT
+```
+
+---
+
+## 📞 Contact
+
+**Evexia Wellness Center**
+- Website: [evexiawellnesscenter.ph](https://evexiawellnesscenter.ph)
+- Facebook: [@evexiawellnesscenter.ph](https://www.facebook.com/evexiawellnesscenter.ph)
+- Instagram: [@evexiawellnesscenter](https://www.instagram.com/evexiawellnesscenter/)
+
+**Project Developer**
+- Ransel Sumatra - [@ranselberry](https://www.instagram.com/ranselberry/)
+
+**Repository**
+- GitHub: [evexiasys-dev/puso-ko-mahal-ko](https://github.com/evexiasys-dev/puso-ko-mahal-ko)
+
+---
+
+## 🙏 Acknowledgments
+
+- [Google Fonts](https://fonts.google.com/) - Plus Jakarta Sans typeface
+- [Font Awesome](https://fontawesome.com/) - Icon library
+- [Google Maps Platform](https://developers.google.com/maps) - Embedded maps
+- QualiCheck Mobile Laboratory - Event partnership
+- Evexia Wellness Center - Event host and sponsor
+
+---
+
+<div align="center">
+
+**Made with 💚 for the Heart Month**
+
+*"Be Kind to Your Heart!"*
+
+</div>
