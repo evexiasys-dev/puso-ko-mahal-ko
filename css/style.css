@@ -135,6 +135,7 @@ body {
 }
 
 @keyframes float {
+
     0%,
     100% {
         transform: translateY(0) scale(1);
@@ -242,6 +243,85 @@ body {
     animation: fadeInUp 1s ease 0.4s both;
 }
 
+.hero-cta-btn {
+    margin-top: 40px;
+    padding: 20px 50px;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
+    color: var(--primary-red);
+    border: 3px solid white;
+    border-radius: 50px;
+    font-size: 19px;
+    font-weight: 800;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.4),
+        0 0 0 0 rgba(255, 255, 255, 0.8),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    animation: fadeInUp 1s ease 0.6s both, pulse 2.5s ease-in-out infinite;
+    transition: all 0.3s ease;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    overflow: hidden;
+}
+
+.hero-cta-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(230, 57, 70, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.hero-cta-btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.hero-cta-btn:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.5),
+        0 0 0 0 rgba(255, 255, 255, 0),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+    border-color: rgba(255, 255, 255, 0.95);
+    background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+}
+
+.hero-cta-btn:active {
+    transform: translateY(-2px) scale(1);
+}
+
+.hero-cta-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        box-shadow:
+            0 10px 30px rgba(0, 0, 0, 0.4),
+            0 0 0 0 rgba(255, 255, 255, 0.8),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+
+    50% {
+        box-shadow:
+            0 10px 30px rgba(0, 0, 0, 0.4),
+            0 0 0 20px rgba(255, 255, 255, 0),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    }
+}
+
 .scroll-indicator {
     position: absolute;
     bottom: 40px;
@@ -258,6 +338,7 @@ body {
 }
 
 @keyframes bounce {
+
     0%,
     20%,
     50%,
@@ -279,6 +360,7 @@ body {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -695,6 +777,7 @@ body {
 }
 
 @keyframes pulse {
+
     0%,
     100% {
         opacity: 1;
@@ -1016,116 +1099,649 @@ body {
 
 /* Responsive rules retained as in original */
 @media (max-width: 1024px) {
-    .nav-container { padding: 0 30px; }
-    .brand-text { font-size: 18px; }
-    .brand-logo { height: 38px; }
-    .main-hero-content { padding-left: 20px; }
-    .main-hero-title { font-size: clamp(40px, 7vw, 80px); }
+    .nav-container {
+        padding: 0 30px;
+    }
+
+    .brand-text {
+        font-size: 18px;
+    }
+
+    .brand-logo {
+        height: 38px;
+    }
+
+    .main-hero-content {
+        padding-left: 20px;
+    }
+
+    .main-hero-title {
+        font-size: clamp(40px, 7vw, 80px);
+    }
 }
 
 @media (max-width: 768px) {
-    .nav-container { padding: 0 20px; }
-    .brand-text { font-size: 16px; letter-spacing: -0.3px; }
-    .brand-logo { height: 34px; }
-    .navbar.scrolled .brand-logo { height: 30px; }
-    .main-hero { padding: 100px 20px 60px; min-height: 85vh; }
-    .main-hero-title { font-size: clamp(36px, 10vw, 48px); margin-bottom: 20px; }
-    .main-hero-subtitle { font-size: clamp(12px, 3vw, 14px); letter-spacing: 1.5px; }
-    .main-hero-content { padding-left: 5px; text-align: left; }
-    .main-hero-logo { margin-bottom: 0px; text-align: left; }
-    .main-hero-logo img { height: clamp(60px, 12vw, 80px); }
-    .main-hero::before, .main-hero::after { font-size: 60px; }
-    .main-hero .heart-deco-3, .main-hero .heart-deco-4, .main-hero .heart-deco-5, .main-hero .heart-deco-6 { display: none; }
-    .main-hero .heart-deco-1 { font-size: 50px; top: 20%; left: 5%; }
-    .main-hero .heart-deco-2 { font-size: 45px; bottom: 25%; right: 5%; }
-    .scroll-indicator { bottom: 20px; }
-    .scroll-indicator i { font-size: 28px; }
+    .nav-container {
+        padding: 0 20px;
+    }
 
-    .partnership-section { min-height: 150px; }
-    .partnership-image { padding: 10px 10px; }
-    .hero { padding: 80px 20px 40px; min-height: 50vh; }
-    .hero h1 { font-size: 32px; line-height: 1.2; }
-    .hero-subtitle { font-size: 16px; }
-    .hero-theme { font-size: 16px; padding: 8px 20px; }
-    .content { padding: 40px 20px; }
-    .packages-grid { grid-template-columns: 1fr; gap: 30px; }
-    .package-card { padding: 30px 20px; }
-    .package-card.premium::after { top: 15px; right: 15px; padding: 6px 15px; font-size: 11px; }
-    .package-name { font-size: 28px; }
-    .package-price { font-size: 40px; }
-    .features-list li { font-size: 15px; }
-    .reminders-section { padding: 40px 20px; margin: 40px 0; }
-    .reminders-section h2 { font-size: 28px; margin-bottom: 30px; }
-    .reminders-grid { flex-direction: column; gap: 20px; padding-left: 20px; }
-    .reminder-item { font-size: 16px; justify-content: center; }
-    .reminder-item i { font-size: 24px; width: 50px; height: 50px; padding: 12px; }
-    .details-section { margin-bottom: 40px; }
-    .details-grid { grid-template-columns: 1fr; gap: 30px; }
-    .event-info h3 { font-size: 24px; }
-    .info-row { font-size: 15px; }
-    .info-row i { font-size: 20px; }
-    .lecture-card { flex-direction: column; text-align: center; padding: 25px; }
-    .doctor-photo { width: 120px; height: 120px; }
-    .doctor-info h4 { font-size: 20px; }
-    .registration-section { padding: 40px 20px; }
-    .registration-section h1 { font-size: 32px; margin-bottom: 30px; }
-    .form-row { flex-direction: column; gap: 0; }
-    .form-container { padding: 25px 15px; }
-    .form-control { padding: 12px 15px; font-size: 14px; }
-    .radio-group { flex-direction: column; gap: 15px; padding: 15px; }
-    .submit-btn { padding: 15px; font-size: 16px; }
-    .location-section { padding: 40px 20px; }
-    .location-section h2 { font-size: 32px; margin-bottom: 30px; }
-    .location-container { grid-template-columns: 1fr; gap: 30px; }
-    .location-info { padding-right: 0; }
-    .location-info h3 { font-size: 24px; }
-    .map-container { height: 350px; }
-    .social-section { padding: 40px 20px; }
-    .social-section h2 { font-size: 32px; }
-    .social-description { font-size: 16px; margin-bottom: 30px; }
-    .social-links { flex-direction: column; align-items: center; gap: 20px; }
-    .social-link { padding: 18px 30px; font-size: 16px; width: 100%; max-width: 300px; justify-content: center; }
-    .footer { padding: 25px 20px; }
-    .footer-text { font-size: 14px; }
-    .footer-credit { font-size: 12px; }
+    .brand-text {
+        font-size: 16px;
+        letter-spacing: -0.3px;
+    }
+
+    .brand-logo {
+        height: 34px;
+    }
+
+    .navbar.scrolled .brand-logo {
+        height: 30px;
+    }
+
+    .main-hero {
+        padding: 100px 20px 60px;
+        min-height: 85vh;
+    }
+
+    .main-hero-title {
+        font-size: clamp(36px, 10vw, 48px);
+        margin-bottom: 20px;
+    }
+
+    .main-hero-subtitle {
+        font-size: clamp(12px, 3vw, 14px);
+        letter-spacing: 1.5px;
+    }
+
+    .hero-cta-btn {
+        font-size: 17px;
+        padding: 16px 40px;
+        margin-top: 30px;
+    }
+
+    .main-hero-content {
+        padding-left: 5px;
+        text-align: left;
+    }
+
+    .main-hero-logo {
+        margin-bottom: 0px;
+        text-align: left;
+    }
+
+    .main-hero-logo img {
+        height: clamp(60px, 12vw, 80px);
+    }
+
+    .main-hero::before,
+    .main-hero::after {
+        font-size: 60px;
+    }
+
+    .main-hero .heart-deco-3,
+    .main-hero .heart-deco-4,
+    .main-hero .heart-deco-5,
+    .main-hero .heart-deco-6 {
+        display: none;
+    }
+
+    .main-hero .heart-deco-1 {
+        font-size: 50px;
+        top: 20%;
+        left: 5%;
+    }
+
+    .main-hero .heart-deco-2 {
+        font-size: 45px;
+        bottom: 25%;
+        right: 5%;
+    }
+
+    .scroll-indicator {
+        bottom: 20px;
+    }
+
+    .scroll-indicator i {
+        font-size: 28px;
+    }
+
+    .partnership-section {
+        min-height: 150px;
+    }
+
+    .partnership-image {
+        padding: 10px 10px;
+    }
+
+    .hero {
+        padding: 80px 20px 40px;
+        min-height: 50vh;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+        line-height: 1.2;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+    }
+
+    .hero-theme {
+        font-size: 16px;
+        padding: 8px 20px;
+    }
+
+    .content {
+        padding: 40px 20px;
+    }
+
+    .packages-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .package-card {
+        padding: 30px 20px;
+    }
+
+    .package-card.premium::after {
+        top: 15px;
+        right: 15px;
+        padding: 6px 15px;
+        font-size: 11px;
+    }
+
+    .package-name {
+        font-size: 28px;
+    }
+
+    .package-price {
+        font-size: 40px;
+    }
+
+    .features-list li {
+        font-size: 15px;
+    }
+
+    .reminders-section {
+        padding: 40px 20px;
+        margin: 40px 0;
+    }
+
+    .reminders-section h2 {
+        font-size: 28px;
+        margin-bottom: 30px;
+    }
+
+    .reminders-grid {
+        flex-direction: column;
+        gap: 20px;
+        padding-left: 20px;
+    }
+
+    .reminder-item {
+        font-size: 16px;
+        justify-content: center;
+    }
+
+    .reminder-item i {
+        font-size: 24px;
+        width: 50px;
+        height: 50px;
+        padding: 12px;
+    }
+
+    .details-section {
+        margin-bottom: 40px;
+    }
+
+    .details-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .event-info h3 {
+        font-size: 24px;
+    }
+
+    .info-row {
+        font-size: 15px;
+    }
+
+    .info-row i {
+        font-size: 20px;
+    }
+
+    .lecture-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 25px;
+    }
+
+    .doctor-photo {
+        width: 120px;
+        height: 120px;
+    }
+
+    .doctor-info h4 {
+        font-size: 20px;
+    }
+
+    .registration-section {
+        padding: 40px 20px;
+    }
+
+    .registration-section h1 {
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .form-container {
+        padding: 25px 15px;
+    }
+
+    .form-control {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+
+    .radio-group {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .submit-btn {
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    .location-section {
+        padding: 40px 20px;
+    }
+
+    .location-section h2 {
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+
+    .location-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .location-info {
+        padding-right: 0;
+    }
+
+    .location-info h3 {
+        font-size: 24px;
+    }
+
+    .map-container {
+        height: 350px;
+    }
+
+    .social-section {
+        padding: 40px 20px;
+    }
+
+    .social-section h2 {
+        font-size: 32px;
+    }
+
+    .social-description {
+        font-size: 16px;
+        margin-bottom: 30px;
+    }
+
+    .social-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .social-link {
+        padding: 18px 30px;
+        font-size: 16px;
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+
+    .footer {
+        padding: 25px 20px;
+    }
+
+    .footer-text {
+        font-size: 14px;
+    }
+
+    .footer-credit {
+        font-size: 12px;
+    }
 }
 
 /* Extra small mobile devices */
 @media (max-width: 600px) {
-    .main-hero-title { font-size: 60px; }
-    .main-hero-subtitle { font-size: 15px; }
-    .main-hero-logo img { height: 90px; }
-    .hero h1 { font-size: 35px; }
-    .hero-subtitle { font-size: 14px; }
-    .package-name { font-size: 35px; }
-    .package-price { font-size: 28px; }
-    .reminders-section h2 { font-size: 25px; }
-    .reminder-item { font-size: 14px; justify-content: flex-start; }
-    .registration-section h1 { font-size: 28px; }
-    .location-section h2 { font-size: 28px; }
-    .location-info h3 { font-size: 22px; }
-    .brand-text { font-size: 16px; }
-    .brand-logo { height: 32px; }
-    .navbar.scrolled .brand-logo { height: 28px; }
-    .social-section h2 { font-size: 28px; }
-    .social-description { font-size: 15px; }
-    .social-link { font-size: 15px; padding: 15px 25px; }
+    .main-hero-title {
+        font-size: 60px;
+    }
+
+    .main-hero-subtitle {
+        font-size: 15px;
+    }
+
+    .hero-cta-btn {
+        font-size: 15px;
+        padding: 14px 35px;
+        letter-spacing: 1px;
+    }
+
+    .main-hero-logo img {
+        height: 90px;
+    }
+
+    .hero h1 {
+        font-size: 35px;
+    }
+
+    .hero-subtitle {
+        font-size: 14px;
+    }
+
+    .package-name {
+        font-size: 35px;
+    }
+
+    .package-price {
+        font-size: 28px;
+    }
+
+    .reminders-section h2 {
+        font-size: 25px;
+    }
+
+    .reminder-item {
+        font-size: 14px;
+        justify-content: flex-start;
+    }
+
+    .registration-section h1 {
+        font-size: 28px;
+    }
+
+    .location-section h2 {
+        font-size: 28px;
+    }
+
+    .location-info h3 {
+        font-size: 22px;
+    }
+
+    .brand-text {
+        font-size: 16px;
+    }
+
+    .brand-logo {
+        height: 32px;
+    }
+
+    .navbar.scrolled .brand-logo {
+        height: 28px;
+    }
+
+    .social-section h2 {
+        font-size: 28px;
+    }
+
+    .social-description {
+        font-size: 15px;
+    }
+
+    .social-link {
+        font-size: 15px;
+        padding: 15px 25px;
+    }
 }
 
 @media (max-width: 768px) {
-    .news-banner-content { font-size: 14px; padding: 0 20px; }
+    .news-banner-content {
+        font-size: 14px;
+        padding: 0 20px;
+    }
 }
 
 @media (max-width: 600px) {
-    .news-banner-content { font-size: 13px; padding: 0 15px; }
+    .news-banner-content {
+        font-size: 13px;
+        padding: 0 15px;
+    }
 }
 
 /* Extra large screens (16:9 aspect ratio optimization) */
 @media (min-width: 1920px) {
-    .nav-container { max-width: 1600px; }
-    .brand-text { font-size: 24px; }
-    .brand-logo { height: 48px; }
-    .main-hero-content { max-width: 1400px; }
-    .main-hero-title { font-size: clamp(96px, 6vw, 110px); }
-    .main-hero-subtitle { font-size: clamp(24px, 1.5vw, 28px); }
-}CSS
+    .nav-container {
+        max-width: 1600px;
+    }
+
+    .brand-text {
+        font-size: 24px;
+    }
+
+    .brand-logo {
+        height: 48px;
+    }
+
+    .main-hero-content {
+        max-width: 1400px;
+    }
+
+    .main-hero-title {
+        font-size: clamp(96px, 6vw, 110px);
+    }
+
+    .main-hero-subtitle {
+        font-size: clamp(24px, 1.5vw, 28px);
+    }
+}
+
+/* ==================== Success Modal Styles ==================== */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 50px 40px;
+    border: 3px solid var(--primary-green);
+    border-radius: 20px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    animation: slideIn 0.3s ease-out;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 36px;
+    color: #999;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+    width: 36px;
+    height: 36px;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.modal-close:hover {
+    color: #333;
+    transform: rotate(90deg);
+}
+
+.modal-icon {
+    margin-bottom: 25px;
+}
+
+.modal-icon i {
+    font-size: 80px;
+    color: var(--primary-green);
+    animation: scaleIn 0.5s ease-out;
+}
+
+.modal-content h2 {
+    color: var(--primary-green);
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.modal-content p {
+    color: #555;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.modal-btn {
+    background: var(--primary-green);
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.modal-btn:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+.modal-btn:active {
+    transform: translateY(0);
+}
+
+/* Modal Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+/* Modal Responsive Styles */
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 40px 30px;
+        max-width: 400px;
+    }
+
+    .modal-icon i {
+        font-size: 70px;
+    }
+
+    .modal-content h2 {
+        font-size: 28px;
+    }
+
+    .modal-content p {
+        font-size: 15px;
+    }
+
+    .modal-btn {
+        padding: 14px 30px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 600px) {
+    .modal-content {
+        padding: 35px 25px;
+        width: 95%;
+    }
+
+    .modal-icon i {
+        font-size: 60px;
+    }
+
+    .modal-content h2 {
+        font-size: 24px;
+    }
+
+    .modal-content p {
+        font-size: 14px;
+    }
+
+    .modal-btn {
+        padding: 12px 25px;
+        font-size: 14px;
+    }
+
+    .modal-close {
+        font-size: 30px;
+        top: 10px;
+        right: 15px;
+    }
+}
+
+CSS

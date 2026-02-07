@@ -14,6 +14,16 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('.hero')?.scrollIntoView({ behavior: 'smooth' });
   });
 
+  // Hero CTA button - scroll to registration
+  document.getElementById('heroCTA')?.addEventListener('click', function () {
+    document.querySelector('.registration-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // Smooth scroll for hero CTA button to registration section
+  document.getElementById('heroCTA')?.addEventListener('click', function () {
+    document.getElementById('registrationForm')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
   // Form handling
   const scriptURL = 'https://script.google.com/macros/s/AKfycbwKLy62El6ur3lf3UgewWtU3keHoaEbem8lPMIzGza9fzCoc2nVWn8myGl5qPTUGgq9/exec';
   const form = document.getElementById('registrationForm');
@@ -60,12 +70,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     fetch(scriptURL, { method: 'POST', body: new FormData(form) })
       .then(response => {
-        statusMsg.style.color = "var(--primary-green)";
-        statusMsg.style.background = "rgba(76, 175, 80, 0.1)";
-        statusMsg.innerText = "✅ Success! You are registered.";
-        submitBtn.innerText = "Registered Successfully";
+        // Show success modal
+        const modal = document.getElementById('successModal');
+        modal.classList.add('show');
+
+        // Reset form
         form.reset();
-        // After reset, keep button disabled until form is filled again
+        submitBtn.innerText = "PRE-REGISTER NOW";
         submitBtn.disabled = true;
       })
       .catch(error => {
@@ -76,5 +87,29 @@ document.addEventListener('DOMContentLoaded', function () {
         submitBtn.innerText = "PRE-REGISTER NOW";
         console.error('Error!', error && error.message ? error.message : error);
       });
+  });
+
+  // Modal functionality
+  const modal = document.getElementById('successModal');
+  const modalClose = document.getElementById('modalClose');
+  const registerAnother = document.getElementById('registerAnother');
+
+  // Close modal when X is clicked
+  modalClose.addEventListener('click', function () {
+    modal.classList.remove('show');
+  });
+
+  // Close modal when clicking outside
+  window.addEventListener('click', function (event) {
+    if (event.target === modal) {
+      modal.classList.remove('show');
+    }
+  });
+
+  // Register another participant
+  registerAnother.addEventListener('click', function () {
+    modal.classList.remove('show');
+    // Scroll to form
+    document.getElementById('registrationForm').scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 });
