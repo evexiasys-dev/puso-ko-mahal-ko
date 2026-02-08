@@ -219,23 +219,23 @@ body {
 }
 
 .main-hero-logo img {
-    height: 152px;
+    height: 140px;
     width: auto;
     filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
     max-width: 100%;
 }
 
 .main-hero-title {
-    font-size: clamp(48px, 8vw, 96px);
+    font-size: clamp(40px, 8vw, 91px);
     font-weight: 800;
     line-height: 1.1;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     letter-spacing: -2px;
     animation: fadeInUp 1s ease 0.2s both;
 }
 
 .main-hero-subtitle {
-    font-size: clamp(14px, 2vw, 24px);
+    font-size: clamp(10px, 2vw, 20px);
     font-weight: 600;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -246,11 +246,11 @@ body {
 .hero-cta-btn {
     margin-top: 40px;
     padding: 20px 50px;
-    background: linear-gradient(135deg, #ffffff 0%, #f8f8f8 100%);
-    color: var(--primary-red);
+    background: linear-gradient(135deg, #3D8B40 0%, #3D8B40 100%);
+    color: var(--primary-white);
     border: 3px solid white;
-    border-radius: 50px;
-    font-size: 19px;
+    border-radius: 40px;
+    font-size: 14px;
     font-weight: 800;
     font-family: 'Plus Jakarta Sans', sans-serif;
     cursor: pointer;
@@ -292,7 +292,7 @@ body {
         0 0 0 0 rgba(255, 255, 255, 0),
         inset 0 1px 0 rgba(255, 255, 255, 1);
     border-color: rgba(255, 255, 255, 0.95);
-    background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+    background: linear-gradient(135deg, #3D8B40 0%, #3D8B40 100%);
 }
 
 .hero-cta-btn:active {
@@ -1439,7 +1439,7 @@ body {
     }
 
     .hero-cta-btn {
-        font-size: 15px;
+        font-size: 12px;
         padding: 14px 35px;
         letter-spacing: 1px;
     }
