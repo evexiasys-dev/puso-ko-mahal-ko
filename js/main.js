@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Smooth scroll for hero CTA button to registration section
   document.getElementById('heroCTA')?.addEventListener('click', function () {
-    document.getElementById('registrationForm')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    document.getElementById('news-banner-section')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
 
   // Form handling
