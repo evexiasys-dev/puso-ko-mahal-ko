@@ -50,7 +50,7 @@ body {
     margin: 0 auto;
     padding: 0 40px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -94,6 +94,46 @@ body {
     font-size: 20px;
     text-shadow: none;
 }
+
+/* Navigation Links */
+.nav-links {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.nav-links a {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.scrolled .nav-links a {
+    color: var(--text-dark);
+    text-shadow: none;
+}
+
+.nav-links a:hover {
+    color: var(--primary-red);
+    transform: translateY(-2px);
+}
+
+.nav-links a.active {
+    background: rgba(230, 57, 70, 0.1);
+    color: var(--primary-red);
+}
+
+.navbar.scrolled .nav-links a.active {
+    background: rgba(230, 57, 70, 0.1);
+    color: var(--primary-red);
+}
+
 
 /* Main Hero Section - Puso ko, Mahal ko! - FIXED RESPONSIVENESS */
 .main-hero {
@@ -1073,6 +1113,30 @@ body {
     opacity: 0.9;
 }
 
+.footer-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--primary-green);
+}
+
+
 .footer-credit {
     font-size: 13px;
     opacity: 0.7;
@@ -1123,6 +1187,15 @@ body {
 @media (max-width: 768px) {
     .nav-container {
         padding: 0 20px;
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+        padding: 6px 12px;
     }
 
     .brand-text {
