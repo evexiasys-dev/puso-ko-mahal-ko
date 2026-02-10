@@ -26,6 +26,37 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
+        /* Force navbar to always show scrolled state on privacy policy page */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+            backdrop-filter: blur(10px) !important;
+            padding: 12px 0 !important;
+        }
+
+        .brand-text {
+            color: var(--text-dark) !important;
+            text-shadow: none !important;
+        }
+
+        .nav-links a {
+            color: var(--text-dark) !important;
+            text-shadow: none !important;
+        }
+
+        .brand a {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .brand a:hover {
+            transform: translateY(-2px);
+        }
+
         .privacy-container {
             max-width: 900px;
             margin: 0 auto;
@@ -131,12 +162,10 @@
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="brand">
-                <img src="assets/images/favicon.png" alt="Evexia Logo" class="brand-logo">
-                <span class="brand-text">February at Evexia</span>
-            </div>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="privacy-policy.html" class="active">Privacy Policy</a>
+                <a href="index.html">
+                    <img src="assets/images/favicon.png" alt="Evexia Logo" class="brand-logo">
+                    <span class="brand-text">February at Evexia</span>
+                </a>
             </div>
         </div>
     </nav>
@@ -268,7 +297,7 @@
         <div class="footer-content">
             <div class="footer-text">© 2026 Evexia Wellness Center. All Rights Reserved.</div>
             <div class="footer-links">
-                <a href="privacy-policy.html">Privacy Policy</a>
+                <a href="privacypolicy.html">Privacy Policy</a>
             </div>
             <div class="footer-credit">Website crafted with care by <a href="https://www.instagram.com/ranselberry/"
                     target="_blank">Ransel Sumatra</a></div>

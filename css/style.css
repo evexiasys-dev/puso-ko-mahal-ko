@@ -63,7 +63,20 @@ body {
     transition: transform 0.3s ease;
 }
 
+.brand a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
 .brand:hover {
+    transform: translateY(-2px);
+}
+
+.brand a:hover {
     transform: translateY(-2px);
 }
 
@@ -1819,3 +1832,33 @@ body {
 }
 
 CSS
+/* Mobile Navigation Menu - Fix for small screens */
+@media (max-width: 768px) {
+    .nav-container {
+        padding: 0 20px;
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: 600px) {
+    .nav-container {
+        padding: 0 15px;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+        padding: 6px 10px;
+    }
+}
