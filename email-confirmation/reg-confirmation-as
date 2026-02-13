@@ -1,0 +1,569 @@
+/**
+ * SIMPLIFIED EMAIL SENDER FOR HEART MONTH SCREENING
+ * Copy this entire code to Google Apps Script
+ * 
+ * SETUP STEPS:
+ * 1. Open your Google Sheet
+ * 2. Click Extensions → Apps Script
+ * 3. Delete any existing code
+ * 4. Paste this ENTIRE code
+ * 5. Click Save (💾 icon)
+ * 6. Close Apps Script tab
+ * 7. Refresh your Google Sheet
+ * 8. You'll see a new menu "📧 Send Emails" at the top
+ */
+
+// ============================================
+// STEP 1: Configure your column numbers
+// ============================================
+// Open your Google Sheet and count which column each field is in
+// Column A = 1, Column B = 2, Column C = 3, etc.
+
+const CONFIG = {
+  NAME_COLUMN: 2,      // Column B - Name
+  EMAIL_COLUMN: 6,     // Column F - Email
+  CONTACT_COLUMN: 8,   // Column H - Contact
+  PACKAGE_COLUMN: 9,   // Column I - Package
+  
+  START_ROW: 2,        // Which row to start from? (2 = skip header row)
+  
+  // Email settings
+  SENDER_NAME: 'Evexia Wellness Center',
+  SUBJECT: '✓ Registration Confirmed - Heart Month Health Screening'
+};
+
+// ============================================
+// MAIN FUNCTION - Creates the menu
+// ============================================
+function onOpen() {
+  SpreadsheetApp.getUi()
+    .createMenu('📧 Send Emails')
+    .addItem('✉️ Send to Selected Row', 'sendToSelectedRow')
+    .addItem('📧 Send to All (Not Sent)', 'sendToAll')
+    .addSeparator()
+    .addItem('⚙️ Instructions', 'showInstructions')
+    .addToUi();
+}
+
+// ============================================
+// Send email to currently selected row
+// ============================================
+function sendToSelectedRow() {
+  const sheet = SpreadsheetApp.getActiveSheet();
+  const row = sheet.getActiveRange().getRow();
+  
+  if (row < CONFIG.START_ROW) {
+    showAlert('Please select a participant row (not the header row)');
+    return;
+  }
+  
+  const data = sheet.getRange(row, 1, 1, sheet.getLastColumn()).getValues()[0];
+  
+  const participant = {
+    name: data[CONFIG.NAME_COLUMN - 1],
+    email: data[CONFIG.EMAIL_COLUMN - 1],
+    contact: data[CONFIG.CONTACT_COLUMN - 1],
+    package: data[CONFIG.PACKAGE_COLUMN - 1]
+  };
+  
+  // Validate
+  if (!participant.email) {
+    showAlert('❌ No email found in this row!');
+    return;
+  }
+  
+  try {
+    sendEmail(participant);
+    showAlert('✅ Email sent successfully to:\n' + participant.email);
+    
+    // Mark as sent in the last column
+    const lastCol = sheet.getLastColumn() + 1;
+    sheet.getRange(row, lastCol).setValue(new Date().toLocaleString());
+    
+  } catch (error) {
+    showAlert('❌ Error sending email:\n' + error.message);
+  }
+}
+
+// ============================================
+// Send emails to all rows (skip if already sent)
+// ============================================
+function sendToAll() {
+  const sheet = SpreadsheetApp.getActiveSheet();
+  const lastRow = sheet.getLastRow();
+  const lastCol = sheet.getLastColumn();
+  
+  // Add header for "Email Sent" column if needed
+  if (sheet.getRange(1, lastCol + 1).getValue() === '') {
+    sheet.getRange(1, lastCol + 1).setValue('Email Sent');
+  }
+  
+  let sent = 0;
+  let skipped = 0;
+  let errors = 0;
+  
+  for (let row = CONFIG.START_ROW; row <= lastRow; row++) {
+    const data = sheet.getRange(row, 1, 1, lastCol + 1).getValues()[0];
+    
+    // Skip if already sent
+    if (data[lastCol]) {
+      skipped++;
+      continue;
+    }
+    
+    const participant = {
+      name: data[CONFIG.NAME_COLUMN - 1],
+      email: data[CONFIG.EMAIL_COLUMN - 1],
+      contact: data[CONFIG.CONTACT_COLUMN - 1],
+      package: data[CONFIG.PACKAGE_COLUMN - 1]
+    };
+    
+    // Skip if data is still loading from IMPORTRANGE or empty
+    if (!participant.name || participant.name === '#REF!' || participant.name === 'Loading...') {
+      skipped++;
+      continue;
+    }
+    
+    if (!participant.email || !participant.email.includes('@')) {
+      errors++;
+      sheet.getRange(row, lastCol + 1).setValue('Invalid Email');
+      continue;
+    }
+    
+    try {
+      sendEmail(participant);
+      sheet.getRange(row, lastCol + 1).setValue(new Date().toLocaleString());
+      sent++;
+      
+      // Wait 1 second between emails to avoid rate limits
+      Utilities.sleep(1000);
+      
+    } catch (error) {
+      errors++;
+      sheet.getRange(row, lastCol + 1).setValue('Error: ' + error.message);
+    }
+  }
+  
+  showAlert(
+    'Campaign Complete!\n\n' +
+    '✅ Sent: ' + sent + '\n' +
+    '⏭️ Skipped: ' + skipped + '\n' +
+    '❌ Errors: ' + errors
+  );
+}
+
+// ============================================
+// The actual email sending function
+// ============================================
+function sendEmail(participant) {
+  const htmlBody = createEmailHTML(participant);
+  
+  MailApp.sendEmail({
+    to: participant.email,
+    subject: CONFIG.SUBJECT,
+    htmlBody: htmlBody,
+    name: CONFIG.SENDER_NAME
+  });
+}
+
+// ============================================
+// Generate the HTML email
+// ============================================
+function createEmailHTML(p) {
+  // Determine if Package A or B
+  // Convert to string first to avoid errors
+  const packageStr = String(p.package || '').toUpperCase();
+  const isPackageB = packageStr.includes('B') || packageStr.includes('850');
+  const packageName = isPackageB ? 'PACKAGE B' : 'PACKAGE A';
+  
+  // Package tests
+  const tests = isPackageB 
+    ? `<li style="margin-bottom: 5px; font-size: 14px;">FBS (Fasting Blood Sugar)</li>
+       <li style="margin-bottom: 5px; font-size: 14px;">BUN</li>
+       <li style="margin-bottom: 5px; font-size: 14px;">Uric Acid</li>
+       <li style="margin-bottom: 5px; font-size: 14px;">Total Cholesterol</li>
+       <li style="margin-bottom: 5px; font-size: 14px;">Triglycerides</li>
+       <li style="margin-bottom: 5px; font-size: 14px; color: #c2185b; font-weight: 600;">HDL (Good Cholesterol)</li>
+       <li style="margin-bottom: 5px; font-size: 14px; color: #c2185b; font-weight: 600;">LDL (Bad Cholesterol)</li>
+       <li style="margin-bottom: 5px; font-size: 14px;">Creatinine</li>`
+    : `<li style="margin-bottom: 5px; font-size: 14px;">FBS (Fasting Blood Sugar)</li>
+       <li style="margin-bottom: 5px; font-size: 14px;">BUN</li>
+       <li style="margin-bottom: 5px; font-size: 14px;">Uric Acid</li>
+       <li style="margin-bottom: 5px; font-size: 14px;">Total Cholesterol</li>
+       <li style="margin-bottom: 5px; font-size: 14px;">Triglycerides</li>
+       <li style="margin-bottom: 5px; font-size: 14px;">Creatinine</li>`;
+  
+  return `<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Registration Confirmed - Heart Month Health Screening</title>
+    <style type="text/css">
+        /* Mobile Responsive Styles */
+        @media only screen and (max-width: 600px) {
+            .email-container {
+                width: 100% !important;
+                min-width: 100% !important;
+            }
+            .mobile-padding {
+                padding: 20px !important;
+            }
+            .mobile-text-center {
+                text-align: center !important;
+            }
+            h1 {
+                font-size: 24px !important;
+            }
+            h2 {
+                font-size: 18px !important;
+            }
+            h3 {
+                font-size: 16px !important;
+            }
+            .mobile-stack {
+                display: block !important;
+                width: 100% !important;
+            }
+        }
+        
+        /* Reset styles for email clients */
+        body, table, td, a {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        table, td {
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+        img {
+            -ms-interpolation-mode: bicubic;
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body style="margin: 0; padding: 0; font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif; background-color: #f4f7fa;">
+    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f4f7fa;">
+        <tr>
+            <td align="center" style="padding: 40px 20px;">
+                <table width="600" cellpadding="0" cellspacing="0" border="0" class="email-container"
+                    style="background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); max-width: 600px; width: 100%;">
+
+                    <!-- Header -->
+                    <tr>
+                        <td class="mobile-padding" style="background: linear-gradient(135deg, #c2185b 0%, #8e24aa 100%); padding: 40px 40px 35px 40px; text-align: center;">
+                            <img src="https://i.imgur.com/hKzynDE.png" alt="Evexia Wellness Center"
+                                style="width: 140px; max-width: 140px; height: auto; margin-bottom: 0px; display: block; margin-left: auto; margin-right: auto;">
+                            <h1 style="color: #ffffff; font-size: 40px; font-weight: 700; margin: 0 0 8px 0; line-height: 1.3; letter-spacing: -0.5px;">
+                                Puso ko, Mahal ko!</h1>
+                            <p style="color: rgba(255,255,255,0.95); font-size: 18px; margin: 0; font-weight: 400;">
+                                Heart Month Health Screening</p>
+                        </td>
+                    </tr>
+        
+                    <!-- Confirmation Message -->
+                    <tr>
+                        <td class="mobile-padding" style="padding: 40px 40px 35px 40px;">
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                <tr>
+                                    <td style="background-color: #e8f5e9; border-left: 4px solid #4caf50; padding: 24px; border-radius: 4px;">
+                                        <h2 style="color: #2e7d32; font-size: 20px; margin: 0 0 8px 0; font-weight: 600;">✓ Registration Confirmed</h2>
+                                        <p style="color: #558b2f; font-size: 15px; margin: 0; line-height: 1.5;">Dear <strong>${p.name}</strong>,</p>
+                                        <p style="color: #558b2f; font-size: 15px; margin: 8px 0 0 0; line-height: 1.5;">Thank you for registering for our Heart Month Health Screening event. We look forward to supporting your health journey.</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Registration Details -->
+                    <tr>
+                        <td class="mobile-padding" style="padding: 0 40px 35px 40px;">
+                            <h3 style="color: #1a1a1a; font-size: 18px; margin: 0 0 16px 0; font-weight: 600;">Registration Details</h3>
+
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                                style="background-color: #fafbfc; border: 1px solid #e1e4e8; border-radius: 4px;">
+                                <tr>
+                                    <td style="padding: 20px 24px;">
+                                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                            <tr>
+                                                <td style="padding-bottom: 12px;">
+                                                    <p style="margin: 0; color: #586069; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Full Name</p>
+                                                    <p style="margin: 4px 0 0 0; color: #24292e; font-size: 15px; font-weight: 400; word-break: break-word;">${p.name}</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 12px 0; border-top: 1px solid #e1e4e8;">
+                                                    <p style="margin: 0; color: #586069; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Email Address</p>
+                                                    <p style="margin: 4px 0 0 0; color: #24292e; font-size: 15px; font-weight: 400; word-break: break-word;">${p.email}</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 12px 0; border-top: 1px solid #e1e4e8;">
+                                                    <p style="margin: 0; color: #586069; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Contact Number</p>
+                                                    <p style="margin: 4px 0 0 0; color: #24292e; font-size: 15px; font-weight: 400; word-break: break-word;">${p.contact}</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-top: 12px; border-top: 1px solid #e1e4e8;">
+                                                    <p style="margin: 0; color: #586069; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Selected Package</p>
+                                                    <p style="margin: 4px 0 0 0; color: #c2185b; font-size: 16px; font-weight: 600; word-break: break-word;">${p.package}</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Event Details -->
+                    <tr>
+                        <td class="mobile-padding" style="padding: 0 40px 35px 40px;">
+                            <h3 style="color: #1a1a1a; font-size: 18px; margin: 0 0 16px 0; font-weight: 600;">Event Information</h3>
+
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                                style="border: 1px solid #e1e4e8; border-radius: 4px;">
+                                <tr>
+                                    <td style="padding: 20px 24px;">
+                                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                            <tr>
+                                                <td style="padding-bottom: 16px;">
+                                                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                        <tr>
+                                                            <td width="32" valign="top">
+                                                                <span style="font-size: 18px;">📆</span>
+                                                            </td>
+                                                            <td valign="top">
+                                                                <p style="margin: 0; color: #586069; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Date</p>
+                                                                <p style="margin: 4px 0 0 0; color: #24292e; font-size: 15px; font-weight: 400;">Sunday, February 15, 2026</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 16px 0; border-top: 1px solid #e1e4e8;">
+                                                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                        <tr>
+                                                            <td width="32" valign="top">
+                                                                <span style="font-size: 18px;">🕖</span>
+                                                            </td>
+                                                            <td valign="top">
+                                                                <p style="margin: 0; color: #586069; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Blood Extraction</p>
+                                                                <p style="margin: 4px 0 0 0; color: #24292e; font-size: 15px; font-weight: 400;">Starts at 7:00 AM</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 16px 0; border-top: 1px solid #e1e4e8;">
+                                                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                        <tr>
+                                                            <td width="32" valign="top">
+                                                                <span style="font-size: 18px;">📍</span>
+                                                            </td>
+                                                            <td valign="top">
+                                                                <p style="margin: 0; color: #586069; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Location</p>
+                                                                <p style="margin: 4px 0 0 0; color: #24292e; font-size: 15px; font-weight: 500;">Evexia Wellness Center</p>
+                                                                <p style="margin: 4px 0 0 0; color: #586069; font-size: 14px; line-height: 1.5;">San Lorenzo Rd., Brgy. Dita, Sta. Rosa City, Laguna<br>Near Chapter 1 Café</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-top: 16px; border-top: 1px solid #e1e4e8;">
+                                                    <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                                        <tr>
+                                                            <td width="32" valign="top">
+                                                                <span style="font-size: 18px;">🕑</span>
+                                                            </td>
+                                                            <td valign="top">
+                                                                <p style="margin: 0; color: #586069; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Health Talk</p>
+                                                                <p style="margin: 4px 0 0 0; color: #24292e; font-size: 15px; font-weight: 400;">2:00 PM - "Be Kind to Your Heart"</p>
+                                                                <p style="margin: 4px 0 0 0; color: #586069; font-size: 14px;">Speaker: Dr. Victor F. Escueta</p>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Partnership -->
+                    <tr>
+                        <td class="mobile-padding" style="padding: 0 40px 35px 40px;">
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                                style="background: linear-gradient(135deg, #7b1fa2 0%, #6a1b9a 100%); border-radius: 4px;">
+                                <tr>
+                                    <td style="padding: 20px; text-align: center;">
+                                        <p style="color: rgba(255,255,255,0.85); font-size: 11px; margin: 0 0 12px 0; letter-spacing: 1.2px; text-transform: uppercase; font-weight: 600;">In Partnership With</p>
+                                        <img src="https://i.imgur.com/TUBAf7o.png" alt="QualiCheck Mobile Laboratory" style="height: 45px; max-width: 100%; height: auto; display: block; margin: 0 auto;">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Important Reminders -->
+                    <tr>
+                        <td class="mobile-padding" style="padding: 0 40px 35px 40px;">
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                                style="background-color: #fff8e1; border-left: 4px solid #ffa726; border-radius: 4px;">
+                                <tr>
+                                    <td style="padding: 24px;">
+                                        <h3 style="color: #e65100; font-size: 16px; margin: 0 0 16px 0; font-weight: 600;">Important Reminders</h3>
+                                        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                                            <tr>
+                                                <td style="padding-bottom: 10px;">
+                                                    <p style="margin: 0; color: #e65100; font-size: 14px; line-height: 1.6;"><strong>• Fasting required:</strong> 10-12 hours before blood extraction</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-bottom: 10px;">
+                                                    <p style="margin: 0; color: #e65100; font-size: 14px; line-height: 1.6;"><strong>• Water is allowed</strong> during the fasting period</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-bottom: 10px;">
+                                                    <p style="margin: 0; color: #e65100; font-size: 14px; line-height: 1.6;"><strong>• Arrive early</strong> for blood extraction starting at 7:00 AM</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <p style="margin: 0; color: #e65100; font-size: 14px; line-height: 1.6;"><strong>• Payment on-site:</strong> Please have payment ready on screening day</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Package Details -->
+                    <tr>
+                        <td class="mobile-padding" style="padding: 0 40px 35px 40px;">
+                            <h3 style="color: #1a1a1a; font-size: 18px; margin: 0 0 16px 0; font-weight: 600;">Package Inclusions</h3>
+
+                            <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                                style="border: 2px solid #c2185b; border-radius: 4px; background-color: #fce4ec;">
+                                <tr>
+                                    <td style="padding: 24px;">
+                                        <h4 style="color: #c2185b; font-size: 17px; margin: 0 0 16px 0; font-weight: 700;">${packageName}</h4>
+                                        
+                                        <p style="margin: 0 0 8px 0; color: #586069; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600;">Blood Chemistry Tests</p>
+                                        <div style="margin: 0 0 20px 0;">
+                                            ${tests}
+                                        </div>
+
+                                        <table width="100%" cellpadding="0" cellspacing="0" border="0"
+                                            style="background-color: #ffffff; border-radius: 4px; border: 1px solid #e1e4e8;">
+                                            <tr>
+                                                <td style="padding: 16px 20px;">
+                                                    <p style="margin: 0 0 8px 0; color: #2e7d32; font-size: 15px; font-weight: 500;">✓ FREE ECG (Electrocardiogram)</p>
+                                                    <p style="margin: 0; color: #2e7d32; font-size: 15px; font-weight: 500;">✓ FREE Medical Consultation</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- CTA -->
+                    <tr>
+                        <td class="mobile-padding" style="padding: 0 40px 40px 40px; text-align: center;">
+                            <p style="color: #586069; font-size: 15px; margin: 0 0 20px 0; line-height: 1.5;">Questions? We're here to help.</p>
+                            <table cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto;">
+                                <tr>
+                                    <td align="center" style="border-radius: 4px; background: linear-gradient(135deg, #c2185b 0%, #8e24aa 100%);">
+                                        <a href="https://evexiasys-dev.github.io/puso-ko-mahal-ko/"
+                                            style="display: inline-block; color: #ffffff; text-decoration: none; padding: 14px 32px; font-weight: 500; font-size: 15px; border-radius: 4px;">View Event Details</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Social Media -->
+                    <tr>
+                        <td class="mobile-padding" style="padding: 32px 40px; background-color: #fafbfc; border-top: 1px solid #e1e4e8; text-align: center;">
+                            <p style="color: #586069; font-size: 14px; margin: 0 0 16px 0; font-weight: 500;">Connect With Us</p>
+                            <table cellpadding="0" cellspacing="0" border="0" style="margin: 0 auto;">
+                                <tr>
+                                    <td style="padding: 0 8px;">
+                                        <a href="https://www.facebook.com/evexiawellnesscenter.ph"
+                                            style="text-decoration: none; display: block;">
+                                            <img src="https://img.icons8.com/color/48/facebook.png" alt="Facebook"
+                                                style="width: 28px; height: 28px; display: block;">
+                                        </a>
+                                    </td>
+                                    <td style="padding: 0 8px;">
+                                        <a href="https://www.instagram.com/evexiawellnesscenter/"
+                                            style="text-decoration: none; display: block;">
+                                            <img src="https://img.icons8.com/color/48/instagram-new.png" alt="Instagram"
+                                                style="width: 28px; height: 28px; display: block;">
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Footer -->
+                    <tr>
+                        <td class="mobile-padding" style="padding: 32px 40px; background-color: #24292e; text-align: center;">
+                            <p style="color: #ffffff; font-size: 16px; font-weight: 600; margin: 0 0 8px 0;">Evexia Wellness Center</p>
+                            <p style="color: #959da5; font-size: 13px; margin: 0; line-height: 1.5;">San Lorenzo Rd., Brgy. Dita, Sta. Rosa City, Laguna<br>Near Chapter 1 Café</p>
+                            <p style="color: #6a737d; font-size: 12px; margin: 16px 0 0 0;">© 2026 Evexia Wellness Center. All rights reserved.</p>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>`;
+}
+
+// ============================================
+// Helper function to show alerts
+// ============================================
+function showAlert(message) {
+  SpreadsheetApp.getUi().alert(message);
+}
+
+// ============================================
+// Show instructions
+// ============================================
+function showInstructions() {
+  const message = 
+    'HOW TO USE:\n\n' +
+    '1. Make sure your columns match CONFIG at top of script\n' +
+    '2. To test: Click a participant row, then menu "Send to Selected Row"\n' +
+    '3. To send all: Click menu "Send to All (Not Sent)"\n\n' +
+    'TIPS:\n' +
+    '- Emails sent will be marked in the last column\n' +
+    '- Invalid emails will be marked as "Invalid Email"\n' +
+    '- Script will skip rows already marked as sent\n\n' +
+    'Need help? Check the script comments for column configuration.';
+  
+  showAlert(message);
+}
