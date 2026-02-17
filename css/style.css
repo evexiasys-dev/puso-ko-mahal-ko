@@ -1639,7 +1639,184 @@ body {
     }
 }
 
-/* ==================== Success Modal Styles ==================== */
+/* ==================== Event Concluded / Closed Styles ==================== */
+
+/* Hero: Event Concluded Badge */
+.event-concluded-badge {
+    margin-top: 40px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    color: white;
+    padding: 16px 36px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    backdrop-filter: blur(8px);
+    animation: fadeInUp 1s ease 0.6s both;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.event-concluded-badge i {
+    font-size: 20px;
+    color: #a8f0ab;
+}
+
+/* Registration Closed Card */
+.event-closed-card {
+    background: white;
+    border-radius: 20px;
+    padding: 60px 50px;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    border-top: 6px solid var(--primary-red);
+    max-width: 620px;
+    margin: 0 auto;
+    animation: fadeInUp 0.8s ease both;
+}
+
+.event-closed-icon {
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(135deg, var(--primary-red), #C41E8B);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 28px;
+    box-shadow: 0 8px 24px rgba(230, 57, 70, 0.3);
+    animation: scaleIn 0.6s ease 0.2s both;
+}
+
+.event-closed-icon i {
+    font-size: 40px;
+    color: white;
+}
+
+.event-closed-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 18px;
+    letter-spacing: -0.5px;
+}
+
+.event-closed-message {
+    font-size: 16px;
+    color: var(--text-gray);
+    line-height: 1.8;
+    margin-bottom: 0;
+}
+
+.event-closed-message strong {
+    color: var(--primary-red);
+}
+
+.event-closed-divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-red), #C41E8B);
+    border-radius: 2px;
+    margin: 28px auto;
+}
+
+.event-closed-followup {
+    font-size: 15px;
+    color: var(--text-gray);
+    line-height: 1.7;
+    margin-bottom: 32px;
+}
+
+.event-closed-actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.event-closed-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.event-closed-btn.facebook-btn {
+    background: #1877F2;
+    color: white;
+}
+
+.event-closed-btn.facebook-btn:hover {
+    background: #0d6fd1;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(24, 119, 242, 0.35);
+}
+
+.event-closed-btn.instagram-btn {
+    background: linear-gradient(135deg, #E1306C, #F77737, #FCAF45);
+    color: white;
+}
+
+.event-closed-btn.instagram-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(225, 48, 108, 0.35);
+}
+
+@media (max-width: 768px) {
+    .event-closed-card {
+        padding: 40px 28px;
+    }
+
+    .event-closed-title {
+        font-size: 24px;
+    }
+
+    .event-concluded-badge {
+        font-size: 13px;
+        padding: 13px 24px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .event-closed-card {
+        padding: 35px 20px;
+    }
+
+    .event-closed-title {
+        font-size: 22px;
+    }
+
+    .event-closed-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .event-closed-btn {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+    }
+
+    .event-concluded-badge {
+        font-size: 12px;
+        padding: 12px 18px;
+        letter-spacing: 0.5px;
+    }
+}
+
+
 .modal {
     display: none;
     position: fixed;

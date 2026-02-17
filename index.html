@@ -75,7 +75,9 @@
         Mahal ko!
       </h1>
       <p class="main-hero-subtitle">IN CELEBRATION OF THE HEART MONTH</p>
-      <button class="hero-cta-btn" id="heroCTA">PRE-REGISTER NOW!</button>
+      <div class="event-concluded-badge">
+        <i class="fas fa-check-circle"></i> Event Successfully Concluded — February 15, 2026
+      </div>
     </div>
     <div class="scroll-indicator">
       <i class="fas fa-chevron-down"></i>
@@ -209,78 +211,42 @@
   <!-- News Banner Section -->
   <section class="news-banner-section">
     <div class="news-banner-content">
-      Sign up online now—no payment needed yet. We'll collect payment on the day of the health screening.
+      🎉 Thank you to all who joined our Heart Month Health Screening on February 15, 2026! Stay tuned for our next
+      event.
     </div>
   </section>
 
-  <!-- Registration Section -->
+  <!-- Registration Closed Section -->
   <section class="registration-section">
     <h1>Participant Registration</h1>
 
     <div class="form-container">
-      <form name="submit-to-google-sheet" id="registrationForm">
-        <div class="form-group">
-          <label>Name</label>
-          <input type="text" name="Name" class="form-control" placeholder="Enter your full name" required>
+      <div class="event-closed-card">
+        <div class="event-closed-icon">
+          <i class="fas fa-heart"></i>
         </div>
-
-        <div class="form-row">
-          <div class="form-group" style="flex: 1;">
-            <label>Age</label>
-            <input type="number" name="Age" class="form-control" required>
-          </div>
-          <div class="form-group" style="flex: 1;">
-            <label>Sex</label>
-            <select name="Sex" class="form-control" required>
-              <option value="">Select</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-            </select>
-          </div>
-          <div class="form-group" style="flex: 1;">
-            <label>Status</label>
-            <select name="Status" class="form-control" required>
-              <option value="">Select</option>
-              <option value="Single">Single</option>
-              <option value="Married">Married</option>
-              <option value="Widowed">Widowed</option>
-            </select>
-          </div>
+        <h2 class="event-closed-title">Registration is Now Closed</h2>
+        <p class="event-closed-message">
+          Our <strong>Heart Month Health Screening</strong> on <strong>February 15, 2026</strong> has successfully
+          concluded.
+          We are grateful to everyone who participated and took a meaningful step toward better heart health.
+        </p>
+        <div class="event-closed-divider"></div>
+        <p class="event-closed-followup">
+          Want to be the first to know about our upcoming health events? Follow us on social media and stay connected
+          with the Evexia community!
+        </p>
+        <div class="event-closed-actions">
+          <a href="https://www.facebook.com/evexiawellnesscenter.ph" target="_blank"
+            class="event-closed-btn facebook-btn">
+            <i class="fab fa-facebook"></i> Follow on Facebook
+          </a>
+          <a href="https://www.instagram.com/evexiawellnesscenter/" target="_blank"
+            class="event-closed-btn instagram-btn">
+            <i class="fab fa-instagram"></i> Follow on Instagram
+          </a>
         </div>
-
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" name="Email" class="form-control" placeholder="your.email@example.com" required>
-        </div>
-
-        <div class="form-group">
-          <label>Address</label>
-          <input type="text" name="Address" class="form-control" placeholder="Complete Address" required>
-        </div>
-
-        <div class="form-group">
-          <label>Contact No.</label>
-          <input type="tel" name="Contact" class="form-control" placeholder="09XX-XXX-XXXX" required>
-        </div>
-
-        <div class="form-group">
-          <label>Choose Package:</label>
-          <div class="radio-group">
-            <label class="radio-option">
-              <input type="radio" name="Package" value="Package A (600)" required>
-              <span>Package A</span>
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="Package" value="Package B (850)" required>
-              <span>Package B</span>
-            </label>
-          </div>
-        </div>
-
-        <div id="form-status"></div>
-
-        <button type="submit" class="submit-btn" id="submitBtn" disabled>PRE-REGISTER NOW</button>
-      </form>
+      </div>
     </div>
   </section>
 
@@ -359,20 +325,6 @@
           target="_blank">Ransel Sumatra</a></div>
     </div>
   </footer>
-
-  <!-- Success Modal -->
-  <div id="successModal" class="modal">
-    <div class="modal-content">
-      <button class="modal-close" id="modalClose">&times;</button>
-      <div class="modal-icon">
-        <i class="fas fa-check-circle"></i>
-      </div>
-      <h2>Registration Successful!</h2>
-      <p>Thank you for registering for our Heart Month Health Screening. We look forward to seeing you on February 15,
-        2026!</p>
-      <button class="modal-btn" id="registerAnother">Register Another Participant</button>
-    </div>
-  </div>
 
   <!-- External JS (defer to not block rendering) -->
   <script src="js/main.js" defer></script>
