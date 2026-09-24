@@ -51,9 +51,12 @@ const EVENT = {
   VENUE: 'Evexia Wellness Center',
   ADDRESS: 'San Lorenzo Rd., Brgy. Dita, Sta. Rosa City, Laguna<br>Near Chapter 1 Café',
   EVEXIA_LOGO: 'https://i.imgur.com/hKzynDE.png',
-  // Served from the website once it is deployed; the image already says "In partnership with".
-  PARTNER_LOGO: 'https://evexia-events.evexia-sys.workers.dev/assets/images/qualicheck-diagnostic.png',
-  PARTNER_NAME: 'QualiCheck Diagnostic Clinic'
+  DOCTOR_SPECIALTIES: ['Family Medicine', 'Integrative Medicine', 'Nutrition', 'Occupational Medicine', 'Animal Bites'],
+  // Same partner logos as the website's purple "In partnership with" band
+  PARTNERS: [
+    { name: 'QualiCheck Diagnostic Clinic', logo: 'https://evexia-events.evexia-sys.workers.dev/assets/images/qualicheck-partner.png', width: 210 },
+    { name: 'Nanucell', logo: 'https://evexia-events.evexia-sys.workers.dev/assets/images/nanucell-partner.png', width: 180 }
+  ]
 };
 
 const COLORS = {
@@ -392,9 +395,15 @@ function emailLayout_(title, headerHtml, bodyRows) {
 
     bodyRows +
 
-    // Partner (purple band, same as the website)
+    // Partners (purple band, same as the website)
     section_(card_(
-      '<img src="' + EVENT.PARTNER_LOGO + '" alt="In partnership with ' + EVENT.PARTNER_NAME + '" style="max-width:340px;width:100%;height:auto;display:block;margin:0 auto;">',
+      '<p style="color:#ffffff;font-size:11px;margin:0 0 14px 0;letter-spacing:2px;text-transform:uppercase;font-weight:700;text-align:center;">In Partnership With</p>' +
+      '<table cellpadding="0" cellspacing="0" border="0" style="margin:0 auto;"><tr>' +
+      EVENT.PARTNERS.map(function (partner) {
+        return '<td align="center" valign="middle" style="padding:6px 12px;">' +
+          '<img src="' + partner.logo + '" alt="' + partner.name + '" width="' + partner.width + '" style="width:' + partner.width + 'px;max-width:100%;height:auto;display:block;"></td>';
+      }).join('') +
+      '</tr></table>',
       'background-color:#8E44AD;background-image:linear-gradient(135deg,#9B59B6 0%,#8E44AD 50%,#7D3C98 100%);'
     )) +
 
@@ -430,7 +439,8 @@ function eventInfoCard_(opts) {
     infoRow_('🩺', 'FREE Consultation',
       value_(EVENT.CONSULTATION) +
       value_(EVENT.DOCTOR, 'font-weight:600;') +
-      value_(EVENT.DOCTOR_TITLE, 'font-size:13px;color:' + COLORS.muted + ';')) +
+      value_(EVENT.DOCTOR_TITLE, 'font-size:13px;color:' + COLORS.muted + ';') +
+      value_(EVENT.DOCTOR_SPECIALTIES.join(' · '), 'font-size:13px;color:' + COLORS.text + ';')) +
     infoRow_('🔬', 'QMRA & Live Blood Analysis', value_('Holistic wellness screening, also available at the event')) +
     infoRow_('📍', 'Venue',
       value_(EVENT.VENUE, 'font-weight:600;') +
