@@ -36,7 +36,7 @@ const CONFIG = {
   REMINDER_HEADER: 'Reminder Sent',
 
   SENDER_NAME: 'Evexia Wellness Center',
-  EVENT_URL: 'https://evexiasys-dev.github.io/puso-ko-mahal-ko/',
+  EVENT_URL: 'https://evexia-events.pages.dev/',
 
   CONFIRMATION_SUBJECT: '✓ You\'re Registered – Evexia 3rd Anniversary Promo (Oct 16)',
   REMINDER_SUBJECT: '⏰ Tomorrow: Evexia 3rd Anniversary Promo – Final Reminders'
@@ -52,7 +52,7 @@ const EVENT = {
   ADDRESS: 'San Lorenzo Rd., Brgy. Dita, Sta. Rosa City, Laguna<br>Near Chapter 1 Café',
   EVEXIA_LOGO: 'https://i.imgur.com/hKzynDE.png',
   // Served from the website once it is deployed; the image already says "In partnership with".
-  PARTNER_LOGO: 'https://evexiasys-dev.github.io/puso-ko-mahal-ko/assets/images/qualicheck-diagnostic.png',
+  PARTNER_LOGO: 'https://evexia-events.pages.dev/assets/images/qualicheck-diagnostic.png',
   PARTNER_NAME: 'QualiCheck Diagnostic Clinic'
 };
 

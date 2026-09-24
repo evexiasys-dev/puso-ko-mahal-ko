@@ -4,14 +4,14 @@
 
 ### Health Screening Landing Page (formerly "Puso ko, Mahal ko!")
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-success?style=flat-square&logo=github)](https://evexiasys-dev.github.io/puso-ko-mahal-ko/)
+[![Cloudflare Pages](https://img.shields.io/badge/Cloudflare%20Pages-Live-success?style=flat-square&logo=cloudflare)](https://evexia-events.pages.dev/)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 *A responsive, mobile-friendly landing page for Evexia Wellness Center's 3rd Anniversary Promo health screening.*
 
-[View Demo](https://evexiasys-dev.github.io/puso-ko-mahal-ko/) • [Report Bug](../../issues) • [Request Feature](../../issues)
+[View Site](https://evexia-events.pages.dev/) • [Report Bug](../../issues) • [Request Feature](../../issues)
 
 </div>
 
@@ -155,31 +155,29 @@ puso-ko-mahal-ko/
 
 ## 🌐 Deployment
 
-### GitHub Pages
+The public site is **https://evexia-events.pages.dev**, hosted on Cloudflare Pages (Evexia's
+Cloudflare account). Every push to `main` deploys automatically.
 
-1. **Push your changes to GitHub**
-   ```bash
-   git add .
-   git commit -m "Initial deployment"
-   git push origin main
-   ```
+### Cloudflare Pages settings
 
-2. **Enable GitHub Pages**
-   - Navigate to repository **Settings**
-   - Click **Pages** in the sidebar
-   - Under **Source**, select branch `main` and folder `/ (root)`
-   - Click **Save**
+| Setting | Value |
+|---|---|
+| Project name | `evexia-events` |
+| Production branch | `main` |
+| Framework preset | None |
+| Build command | `bash build.sh` |
+| Build output directory | `dist` |
 
-3. **Access your site**
-   - Your site will be available at: `https://[username].github.io/puso-ko-mahal-ko/`
-   - Deployment typically takes 2-5 minutes
+`build.sh` copies only the website files (`index.html`, `privacypolicy.html`, `css/`, `js/`, `assets/`)
+into `dist/`, so `BACKUP/`, `email-confirmation/` and this README are not published.
 
-### Alternative Hosting Options
+### Pushing from this Mac
 
-- **Netlify** - Drag and drop deployment
-- **Vercel** - Git-based deployment
-- **Cloudflare Pages** - Fast global CDN
-- **AWS S3 + CloudFront** - Enterprise solution
+The remote is set to push as the `ranselcrackers` collaborator account:
+
+```bash
+git remote set-url origin https://ranselcrackers@github.com/evexiasys-dev/puso-ko-mahal-ko.git
+```
 
 ---
 
