@@ -1,15 +1,15 @@
 <div align="center">
 
-# Evexia 3rd Anniversary Promo
+# Puso ko, Mahal ko!
 
-### Health Screening Landing Page (formerly "Puso ko, Mahal ko!")
+### Heart Month Health Screening Landing Page
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-success?style=flat-square&logo=github)](https://evexiasys-dev.github.io/puso-ko-mahal-ko/)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
-*A responsive, mobile-friendly landing page for Evexia Wellness Center's 3rd Anniversary Promo health screening.*
+*A responsive, mobile-friendly landing page for Evexia Wellness Center's Heart Month Health Screening event.*
 
 [View Demo](https://evexiasys-dev.github.io/puso-ko-mahal-ko/) • [Report Bug](../../issues) • [Request Feature](../../issues)
 
@@ -42,11 +42,11 @@
 
 ## 🎯 About The Project
 
-This landing page promotes and manages pre-registrations for **Evexia Wellness Center's 3rd Anniversary Promo** on **October 16, 2026 (Friday), 7 AM – 12 PM**, in partnership with QualiCheck Diagnostic Clinic. It was first built for the Heart Month Health Screening (February 15, 2026) and reused for this event.
+This landing page was developed for **Evexia Wellness Center** to promote and manage registrations for the Heart Month Health Screening event scheduled for **February 15, 2026**. The site provides comprehensive event information, package details, and a seamless registration experience.
 
 ### Key Objectives
 
-- 📢 Announce the 3rd Anniversary Promo event
+- 📢 Announce the Heart Month Health Screening event
 - 📝 Collect pre-registrations through an integrated form
 - 📱 Deliver a mobile-first, accessible user experience
 - 🔧 Maintain simplicity for easy content updates by non-developers
@@ -57,7 +57,6 @@ This landing page promotes and manages pre-registrations for **Evexia Wellness C
 
 - ✅ **Fully Responsive Design** - Optimized for mobile, tablet, and desktop
 - ✅ **Interactive Registration Form** - Real-time validation with Google Sheets integration
-- ✅ **Automatic Confirmation Email** - Sent to the patient's email as soon as they register
 - ✅ **Smooth Animations** - Scroll effects and transitions for enhanced UX
 - ✅ **SEO Optimized** - Complete meta tags for search engines and social media
 - ✅ **Embedded Google Maps** - Interactive location finder
@@ -147,7 +146,7 @@ puso-ko-mahal-ko/
         ├── favicon.png         # Browser tab icon
         ├── EWC-logo.png        # Evexia Wellness Center logo
         ├── header-bg.png       # Hero section background
-        ├── qualicheck-diagnostic.png # Partnership banner (QualiCheck Diagnostic Clinic)
+        ├── qualicheck.png      # Partnership logo
         └── preview.png         # Social media preview image
 ```
 
@@ -187,26 +186,33 @@ puso-ko-mahal-ko/
 
 ### Google Apps Script Integration
 
-The form posts to a Google Apps Script web app (URL in `js/main.js`). The script lives in
-[`email-confirmation/anniversary-apps-script.gs`](email-confirmation/anniversary-apps-script.gs) and:
+The registration form submits data to Google Sheets via Apps Script.
 
-- saves each registration to the **"Oct 16 Anniversary"** tab (created automatically with the columns in `CONFIG.HEADERS`: first/middle/last name, age, sex, status, email, contact, barangay, city, province, package)
-- skips the email for patients who ticked **No email** (marked "No Email" in the sheet)
-- **automatically emails the confirmation** to the patient and records the time in **Confirmation Sent**
-- adds a **📧 Send Emails** menu to the sheet for resends and the **day-before reminder** (send on October 15)
+#### Setup Instructions
 
-#### Updating the deployed script (keeps the same URL)
+1. **Create a Google Spreadsheet** with the following columns:
+   ```
+   Name | Age | Sex | Status | Email | Address | Contact | Package | Timestamp
+   ```
 
-1. Open the Google Sheet → **Extensions → Apps Script**
-2. Replace all code with `anniversary-apps-script.gs` and **Save**
-3. Run the **`setup`** function once and approve the permissions (Sheets + send email)
-4. **Deploy → Manage deployments → ✏️ Edit** the existing web app → Version: **New version** → **Deploy**
-   (Execute as: **Me**, Who has access: **Anyone**). Creating a *new* deployment would change the URL.
-5. Submit a test registration with your own email address
+2. **Create an Apps Script**
+   - Open your spreadsheet
+   - Click **Extensions** → **Apps Script**
 
-> Daily email limit: ~100 recipients/day on a free Gmail account, 1,500 on Google Workspace.
+3. **Deploy as Web App**
+   - Click **Deploy** → **New deployment**
+   - Type: **Web app**
+   - Execute as: **Me**
+   - Who has access: **Anyone**
+   - Click **Deploy**
+   - Copy the **Web app URL**
 
-The older files in `email-confirmation/` are backups from the February event.
+4. **Update Form Endpoint**
+   - Open `js/main.js`
+   - Replace the `scriptURL` value with your deployment URL:
+   ```javascript
+   const scriptURL = 'YOUR_APPS_SCRIPT_URL_HERE';
+   ```
 
 ### Social Media Meta Tags
 
@@ -337,6 +343,8 @@ SPDX-License-Identifier: MIT
 
 <div align="center">
 
-**Made with 💚 for Evexia's 3rd Anniversary**
+**Made with 💚 for the Heart Month**
+
+*"Be Kind to Your Heart!"*
 
 </div>
