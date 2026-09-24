@@ -29,7 +29,7 @@ const CONFIG = {
   // It is created automatically if missing, and any missing column is added.
   EVENT_SHEET_NAME: 'Oct 16 Anniversary',
   // Must match the form field names on the website (index.html).
-  HEADERS: ['timestamp', 'First Name', 'Middle Name', 'Last Name', 'Age', 'Sex', 'Status',
+  HEADERS: ['timestamp', 'First Name', 'Middle Name', 'Last Name', 'Suffix', 'Birthday', 'Age', 'Sex', 'Status',
     'Email', 'Contact', 'Barangay', 'City', 'Province', 'Package', 'Confirmation Sent', 'Reminder Sent'],
 
   CONFIRMATION_HEADER: 'Confirmation Sent',
@@ -270,7 +270,7 @@ function participantFromRow_(sheet, row) {
     return i === -1 ? '' : data[i];
   };
   const middle = String(get('Middle Name')).toUpperCase() === 'N/A' ? '' : get('Middle Name');
-  const name = [get('First Name'), middle, get('Last Name')].filter(String).join(' ') || get('Name');
+  const name = [get('First Name'), middle, get('Last Name'), get('Suffix')].filter(String).join(' ') || get('Name');
   const address = [get('Barangay'), get('City'), get('Province')].filter(String).join(', ');
   return { name: name, email: get('Email'), contact: get('Contact'), address: address, package: get('Package') };
 }

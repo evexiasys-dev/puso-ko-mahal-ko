@@ -115,8 +115,14 @@
 
   <!-- Partnership Section -->
   <section class="partnership-section">
-    <img src="assets/images/qualicheck-diagnostic.png" alt="In Partnership with QualiCheck Diagnostic Clinic"
-      class="partnership-image">
+    <p class="partnership-label">In partnership with</p>
+    <div class="partnership-logos">
+      <img src="assets/images/qualicheck-partner.png" alt="QualiCheck Diagnostic Clinic" class="partnership-image"
+        width="1000" height="214" loading="lazy">
+      <span class="partnership-divider" aria-hidden="true"></span>
+      <img src="assets/images/nanucell-partner.png" alt="Nanucell" class="partnership-image partnership-image-nanucell" width="1000" height="300"
+        loading="lazy">
+    </div>
   </section>
 
   <!-- Highlights Section -->
@@ -268,6 +274,13 @@
               <h4>Free Consultation</h4>
               <div class="doctor-title">Dr. Vico F. Escueta</div>
               <div class="doctor-specialty">Family Physician<br>Integrative Medicine &amp; Naturopathy</div>
+              <ul class="doctor-specialties">
+                <li>Family Medicine</li>
+                <li>Integrative Medicine</li>
+                <li>Nutrition</li>
+                <li>Occupational Medicine</li>
+                <li>Animal Bites</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -313,8 +326,15 @@
         <div class="form-row form-row-3">
           <div class="form-group">
             <label for="f-suffix">Suffix <span class="label-optional">(optional)</span></label>
-            <input id="f-suffix" type="text" name="Suffix" class="form-control" autocomplete="honorific-suffix"
-              placeholder="Jr., Sr., III" data-suffix>
+            <select id="f-suffix" name="Suffix" class="form-control">
+              <option value="">None</option>
+              <option value="Jr.">Jr.</option>
+              <option value="Sr.">Sr.</option>
+              <option value="II">II</option>
+              <option value="III">III</option>
+              <option value="IV">IV</option>
+              <option value="V">V</option>
+            </select>
           </div>
           <div class="form-group">
             <label for="f-birthday">Birthday</label>

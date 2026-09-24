@@ -190,7 +190,7 @@ puso-ko-mahal-ko/
 The form posts to a Google Apps Script web app (URL in `js/main.js`). The script lives in
 [`email-confirmation/anniversary-apps-script.gs`](email-confirmation/anniversary-apps-script.gs) and:
 
-- saves each registration to the **"Oct 16 Anniversary"** tab (created automatically with the columns in `CONFIG.HEADERS`: first/middle/last name, age, sex, status, email, contact, barangay, city, province, package)
+- saves each registration to the **"Oct 16 Anniversary"** tab (created automatically with the columns in `CONFIG.HEADERS`: first/middle/last name, suffix, birthday, age, sex, status, email, contact, barangay, city, province, package)
 - skips the email for patients who ticked **No email** (marked "No Email" in the sheet)
 - **automatically emails the confirmation** to the patient and records the time in **Confirmation Sent**
 - adds a **📧 Send Emails** menu to the sheet for resends and the **day-before reminder** (send on October 15)

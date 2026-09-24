@@ -378,17 +378,46 @@ img {
     background: linear-gradient(135deg, #9B59B6 0%, #8E44AD 50%, #7D3C98 100%);
     width: 100%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     min-height: 200px;
+    padding: 36px 24px;
+}
+
+.partnership-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 20px;
+}
+
+.partnership-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 44px;
 }
 
 .partnership-image {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
     display: block;
+    width: auto;
+    height: 62px;
+    max-width: 100%;
     object-fit: contain;
+}
+
+/* Nanucell's wordmark is small next to its emblem; extra height balances it with QualiCheck */
+.partnership-image-nanucell {
+    height: 80px;
+}
+
+.partnership-divider {
+    width: 1px;
+    height: 64px;
+    background: rgba(255, 255, 255, 0.35);
 }
 
 /* ==================== Highlights ==================== */
@@ -483,20 +512,21 @@ img {
 
 .packages-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 36px;
-    margin-top: 44px;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
 }
 
+/* Same build as the February site: plain white cards, the gradient bar only
+   slides in on hover. */
 .package-card {
     background: var(--white);
-    border-radius: var(--radius-lg);
+    border-radius: 20px;
     padding: 40px;
     box-shadow: var(--shadow-sm);
-    border: 1px solid var(--border);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .package-card::before {
@@ -506,7 +536,9 @@ img {
     left: 0;
     right: 0;
     height: 5px;
-    background: linear-gradient(90deg, var(--primary-green), var(--primary-red));
+    background: linear-gradient(90deg, var(--primary-red), var(--primary-green));
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
 }
 
 .package-card:hover {
@@ -514,60 +546,66 @@ img {
     box-shadow: var(--shadow-lg);
 }
 
+.package-card:hover::before {
+    transform: scaleX(1);
+}
+
 .package-card.premium {
     border: 2px solid var(--primary-red);
 }
 
 .package-card.premium::after {
-    content: "Recommended";
+    content: "RECOMMENDED";
     position: absolute;
-    top: 24px;
-    right: 24px;
+    top: 20px;
+    right: 20px;
     background: var(--primary-red);
     color: var(--white);
-    padding: 7px 16px;
-    border-radius: 999px;
-    font-size: 11px;
-    font-weight: 800;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
+    box-shadow: var(--shadow-sm);
 }
 
 .package-name {
-    font-size: 30px;
+    font-size: 32px;
     font-weight: 800;
+    margin-bottom: 15px;
     color: var(--text-dark);
-    margin-bottom: 8px;
 }
 
 .package-price {
-    font-size: 46px;
+    font-size: 48px;
     color: var(--primary-red);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     display: block;
     font-weight: 800;
-    letter-spacing: -1px;
 }
 
 .package-card>p {
-    font-size: 15px;
-    margin-bottom: 12px;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 20px;
     color: var(--text-gray);
 }
 
 .features-list {
     list-style: none;
-    margin-bottom: 24px;
+    padding: 0;
+    margin-bottom: 25px;
 }
 
 .features-list li {
-    padding: 11px 0;
-    border-bottom: 1px solid #F0EEE9;
-    font-size: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 16px;
     display: flex;
     align-items: center;
     gap: 12px;
-    color: var(--text-dark);
+    color: var(--text-gray);
 }
 
 .features-list li i {
@@ -576,7 +614,7 @@ img {
 }
 
 .features-list li.highlight {
-    color: var(--dark-red);
+    color: var(--primary-red);
     font-weight: 700;
 }
 
@@ -585,24 +623,23 @@ img {
 }
 
 .bonus-items {
-    background: linear-gradient(135deg, rgba(240, 86, 74, 0.08), rgba(52, 179, 95, 0.1));
-    padding: 18px 20px;
-    border-radius: var(--radius-md);
+    margin-top: 25px;
+    background: linear-gradient(135deg, rgba(240, 86, 74, 0.1), rgba(52, 179, 95, 0.1));
+    padding: 20px;
+    border-radius: 12px;
     font-weight: 700;
-    color: var(--dark-red);
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 28px;
+    color: var(--primary-red);
 }
 
 .bonus-items div {
+    padding: 8px 0;
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
 .bonus-items i {
-    font-size: 18px;
+    font-size: 20px;
 }
 
 /* ==================== Reminders ==================== */
@@ -725,6 +762,26 @@ img {
     background-position: center;
 }
 
+.doctor-specialties {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    justify-content: start;
+    gap: 4px 22px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--text-dark);
+}
+
+.doctor-specialties li::before {
+    content: '•';
+    color: var(--primary-green);
+    font-weight: 800;
+    margin-right: 8px;
+}
+
 .lecture-time {
     color: var(--dark-green);
     font-weight: 800;
@@ -823,6 +880,18 @@ img {
     background: var(--white);
     color: var(--text-dark);
     transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    height: 52px;
+}
+
+select.form-control {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 44px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%235B6660' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 12px 8px;
+    cursor: pointer;
 }
 
 .form-control:focus {
@@ -1354,10 +1423,6 @@ img {
         grid-row: 1;
     }
 
-
-    .packages-grid {
-        grid-template-columns: 1fr;
-    }
 }
 
 @media (max-width: 768px) {
@@ -1371,10 +1436,23 @@ img {
 
     .partnership-section {
         min-height: 150px;
+        padding: 30px 16px;
+    }
+
+    .partnership-logos {
+        gap: 28px;
     }
 
     .partnership-image {
-        padding: 10px;
+        height: 48px;
+    }
+
+    .partnership-image-nanucell {
+        height: 62px;
+    }
+
+    .partnership-divider {
+        height: 50px;
     }
 
     .nav-links a {
@@ -1401,19 +1479,43 @@ img {
         padding: 52px 16px;
     }
 
+    .packages-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
     .package-card {
-        padding: 30px 22px;
+        padding: 30px 20px;
     }
 
     .package-card.premium::after {
-        top: 18px;
-        right: 18px;
+        top: 15px;
+        right: 15px;
+        padding: 6px 15px;
+        font-size: 11px;
+    }
+
+    .package-name {
+        font-size: 28px;
+    }
+
+    .package-price {
+        font-size: 40px;
+    }
+
+    .features-list li {
+        font-size: 15px;
     }
 
     .lecture-card {
         flex-direction: column;
         text-align: center;
         padding: 28px 22px;
+    }
+
+    .doctor-specialties {
+        justify-content: center;
+        text-align: left;
     }
 
     .form-container {
@@ -1458,6 +1560,28 @@ img {
     }
 
 
+    .doctor-specialties {
+        grid-template-columns: auto;
+    }
+
+    .partnership-logos {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .partnership-image {
+        height: 50px;
+    }
+
+    .partnership-image-nanucell {
+        height: 64px;
+    }
+
+    .partnership-divider {
+        width: 64px;
+        height: 1px;
+    }
+
     .highlights-grid,
     .reminders-grid,
     .radio-group {
@@ -1483,14 +1607,6 @@ img {
 
     .highlight-card h3 {
         margin-bottom: 0;
-    }
-
-    .package-name {
-        font-size: 26px;
-    }
-
-    .package-price {
-        font-size: 38px;
     }
 
     .modal-content {

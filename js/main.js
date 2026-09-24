@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const emailInput = document.getElementById('f-email');
   const contactInput = document.getElementById('f-contact');
-  const suffixInput = document.getElementById('f-suffix');
   const birthdayInput = document.getElementById('f-birthday');
   const ageInput = document.getElementById('f-age');
   const barangayInput = document.getElementById('f-barangay');
@@ -51,18 +50,6 @@ document.addEventListener('DOMContentLoaded', function () {
       .map(word => word.replace(/(^|[-'])(\p{L})(\p{L}*)/gu, (m, sep, first, rest) => sep + first.toUpperCase() + rest.toLowerCase()))
       .join(' ');
   }
-
-  // Suffix: "Jr."/"Sr." title-case, roman numerals (II, III, IV) stay uppercase.
-  function formatSuffix(value) {
-    const raw = (value || '').trim();
-    if (!raw) return raw;
-    const hadDot = raw.endsWith('.');
-    const bare = hadDot ? raw.slice(0, -1) : raw;
-    if (/^(jr|sr)$/i.test(bare)) return bare[0].toUpperCase() + bare.slice(1).toLowerCase() + (hadDot ? '.' : '');
-    if (/^[ivx]+$/i.test(bare)) return bare.toUpperCase() + (hadDot ? '.' : '');
-    return toTitleCase(raw);
-  }
-  suffixInput.addEventListener('blur', () => { suffixInput.value = formatSuffix(suffixInput.value); });
 
   // Birthday → age. Same checks as the QualiCheck CMS registration.
   function todayISO() {
@@ -269,7 +256,6 @@ document.addEventListener('DOMContentLoaded', function () {
     e.preventDefault();
 
     titleCaseInputs.forEach(applyTitleCase);
-    suffixInput.value = formatSuffix(suffixInput.value);
     if (!isFormComplete()) {
       setFieldError(birthdayInput, !isBirthdayValid());
       setFieldError(emailInput, !isEmailValid());
