@@ -4,14 +4,14 @@
 
 ### Health Screening Landing Page (formerly "Puso ko, Mahal ko!")
 
-[![Cloudflare Pages](https://img.shields.io/badge/Cloudflare%20Pages-Live-success?style=flat-square&logo=cloudflare)](https://evexia-events.pages.dev/)
+[![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Live-success?style=flat-square&logo=cloudflare)](https://evexia-events.evexia-sys.workers.dev/)
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 *A responsive, mobile-friendly landing page for Evexia Wellness Center's 3rd Anniversary Promo health screening.*
 
-[View Site](https://evexia-events.pages.dev/) • [Report Bug](../../issues) • [Request Feature](../../issues)
+[View Site](https://evexia-events.evexia-sys.workers.dev/) • [Report Bug](../../issues) • [Request Feature](../../issues)
 
 </div>
 
@@ -155,21 +155,13 @@ puso-ko-mahal-ko/
 
 ## 🌐 Deployment
 
-The public site is **https://evexia-events.pages.dev**, hosted on Cloudflare Pages (Evexia's
-Cloudflare account). Every push to `main` deploys automatically.
+The public site is **https://evexia-events.evexia-sys.workers.dev**, a Cloudflare Worker serving
+static assets (Evexia's Cloudflare account). Workers Builds deploys every push to `main`
+by running `npx wrangler deploy`.
 
-### Cloudflare Pages settings
-
-| Setting | Value |
-|---|---|
-| Project name | `evexia-events` |
-| Production branch | `main` |
-| Framework preset | None |
-| Build command | `bash build.sh` |
-| Build output directory | `dist` |
-
-`build.sh` copies only the website files (`index.html`, `privacypolicy.html`, `css/`, `js/`, `assets/`)
-into `dist/`, so `BACKUP/`, `email-confirmation/` and this README are not published.
+- `wrangler.jsonc` names the Worker (`evexia-events`) and serves the repo root as static assets.
+- `.assetsignore` keeps `BACKUP/`, `email-confirmation/`, this README and config files off the public site.
+  Add any new non-website file or folder there.
 
 ### Pushing from this Mac
 

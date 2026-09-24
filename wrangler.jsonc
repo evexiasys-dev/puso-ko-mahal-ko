@@ -1,0 +1,11 @@
+{
+  "$schema": "https://unpkg.com/wrangler/config-schema.json",
+  // Static site served by Workers static assets. Workers Builds runs
+  // `npx wrangler deploy` on every push to main.
+  "name": "evexia-events",
+  "compatibility_date": "2026-09-01",
+  "assets": {
+    // Repo root; .assetsignore keeps non-site files (BACKUP/, email-confirmation/, README...) unpublished
+    "directory": "./"
+  }
+}
