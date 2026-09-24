@@ -20,9 +20,9 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Form handling
-  // Same Apps Script web app used for the February event. Its doPost saves the row
-  // to Google Sheets and sends the confirmation email (see email-confirmation/anniversary-apps-script.gs).
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbwKLy62El6ur3lf3UgewWtU3keHoaEbem8lPMIzGza9fzCoc2nVWn8myGl5qPTUGgq9/exec';
+  // Apps Script web app bound to the October 16 registration sheet. Its doPost saves the
+  // row and sends the confirmation email (see email-confirmation/anniversary-apps-script.gs).
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbxGFPyEfritosgmSJwdntpL9HMFb60bMOODc-jjeKBykx-IEwaWxP72_bvwaQ1BP1YL-Q/exec';
   const form = document.getElementById('registrationForm');
   const statusMsg = document.getElementById('form-status');
   const submitBtn = document.getElementById('submitBtn');

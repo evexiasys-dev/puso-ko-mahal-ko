@@ -9,16 +9,16 @@
  *   - The "📧 Send Emails" menu is still available for resending a confirmation,
  *     catching up on any that failed, and sending the day-before reminder.
  *
- * SETUP (use the SAME Apps Script project the website already posts to, so the
- * web app URL in js/main.js does not change):
+ * SETUP (a new Google Sheet just for this event):
  *   1. Open the Google Sheet → Extensions → Apps Script.
- *   2. Replace ALL existing code with this file and click Save.
+ *   2. Paste this whole file and click Save.
  *   3. Select the function "setup" in the toolbar and click Run. Approve the
  *      permissions (Sheets + send email). This creates the "Oct 16 Anniversary" tab.
- *   4. Deploy → Manage deployments → ✏️ Edit the existing Web app deployment →
- *      Version: "New version" → Deploy. (Do NOT create a new deployment, or the
- *      URL will change.) Execute as: Me · Who has access: Anyone.
- *   5. Submit a test registration on the website with your own email.
+ *   4. Deploy → New deployment → Web app. Execute as: Me · Who has access: Anyone
+ *      (not "Anyone with Google account"). Put the /exec URL in js/main.js (scriptURL).
+ *   5. After later code changes: Deploy → Manage deployments → ✏️ Edit →
+ *      Version: "New version" → Deploy, so the URL stays the same.
+ *   6. Submit a test registration on the website with your own email.
  */
 
 // ============================================

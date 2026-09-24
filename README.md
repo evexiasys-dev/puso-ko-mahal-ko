@@ -193,14 +193,15 @@ The form posts to a Google Apps Script web app (URL in `js/main.js`). The script
 - **automatically emails the confirmation** to the patient and records the time in **Confirmation Sent**
 - adds a **📧 Send Emails** menu to the sheet for resends and the **day-before reminder** (send on October 15)
 
-#### Updating the deployed script (keeps the same URL)
+#### Setting up the script
 
-1. Open the Google Sheet → **Extensions → Apps Script**
-2. Replace all code with `anniversary-apps-script.gs` and **Save**
+1. Open the event's Google Sheet → **Extensions → Apps Script**
+2. Paste `anniversary-apps-script.gs` and **Save**
 3. Run the **`setup`** function once and approve the permissions (Sheets + send email)
-4. **Deploy → Manage deployments → ✏️ Edit** the existing web app → Version: **New version** → **Deploy**
-   (Execute as: **Me**, Who has access: **Anyone**). Creating a *new* deployment would change the URL.
-5. Submit a test registration with your own email address
+4. **Deploy → New deployment → Web app**, Execute as: **Me**, Who has access: **Anyone**
+5. Put the web app `/exec` URL in `js/main.js` (`scriptURL`)
+6. For later code changes use **Manage deployments → ✏️ Edit → New version**, so the URL stays the same
+7. Submit a test registration with your own email address
 
 > Daily email limit: ~100 recipients/day on a free Gmail account, 1,500 on Google Workspace.
 
