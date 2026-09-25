@@ -536,11 +536,10 @@ function createConfirmationEmailHTML(p) {
     section_(card_(
       '<h3 style="color:#B45309;font-size:16px;margin:0 0 14px 0;font-weight:800;">Important Reminders</h3>' +
       reminderList_([
-        '<strong>• Fasting required:</strong> 10–12 hours before your blood collection'
-      ].concat(fastingSteps_(p).map(function (step) { return '• ' + step; })).concat([
-        '<strong>• No water or other drinks</strong> while fasting',
-        '<strong>• No payment needed yet:</strong> payment is collected on-site on the event day'
-      ]), '#92400E'),
+        '<strong>• Fast for 10–12 hours:</strong> ' + fastingSteps_(p).join('<br>') + '.',
+        '<strong>• No water or other drinks:</strong> after your light meal, have nothing to eat or drink until your blood is collected.',
+        '<strong>• Pay on-site:</strong> no payment is needed to pre-register. Payment is collected on the event day.'
+      ], '#92400E'),
       'background-color:#FFF7E6;border-left:4px solid ' + COLORS.gold + ';'
     ));
 
@@ -570,7 +569,7 @@ function createReminderEmailHTML(p) {
         '<strong>FASTING TONIGHT:</strong> ' + fastingSteps_(p).join('<br>') + '.',
         '<strong>NO WATER OR OTHER DRINKS</strong> after your light meal, until your blood is collected.',
         '<strong>BRING A VALID ID</strong> for verification.',
-        '<strong>PREPARE PAYMENT.</strong> Payment is collected on-site.'
+        '<strong>PREPARE PAYMENT.</strong> Payment is collected on-site on the event day.'
       ], COLORS.text),
       'background-color:#FEF1EF;border-left:4px solid ' + COLORS.coral + ';'
     )) +

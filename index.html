@@ -211,47 +211,67 @@
 
   <!-- Reminders Section -->
   <section class="reminders-section">
-    <h2>Important Reminders</h2>
-    <div class="reminders-grid">
-      <div class="reminder-item">
-        <i class="fas fa-stopwatch"></i>
-        <span>10–12 hours fasting required</span>
+    <div class="reminders-inner">
+      <div class="reminders-head">
+        <p class="section-eyebrow">Before you come</p>
+        <h2>Important Reminders</h2>
       </div>
-      <div class="reminder-item">
-        <i class="fas fa-droplet-slash"></i>
-        <span>No water or other drinks while fasting</span>
-      </div>
-      <div class="reminder-item">
-        <i class="fas fa-syringe"></i>
-        <span>Blood collection by batch you choose</span>
-      </div>
-      <div class="reminder-item">
-        <i class="fas fa-wallet"></i>
-        <span>Payment is collected on-site</span>
-      </div>
-    </div>
 
-    <div class="fasting-guide">
-      <h3>Fasting Guide</h3>
-      <div class="batch-grid">
-        <div class="batch-card">
-          <p class="batch-name">Batch 1</p>
-          <p class="batch-time">Blood collection 7:00 – 9:00 AM</p>
-          <ul class="batch-steps">
-            <li><strong>7:00 PM</strong> Dinner</li>
-            <li><strong>9:00 PM</strong> Light meal, then start fasting</li>
-          </ul>
-        </div>
-        <div class="batch-card">
-          <p class="batch-name">Batch 2</p>
-          <p class="batch-time">Blood collection 8:00 – 10:00 AM</p>
-          <ul class="batch-steps">
-            <li><strong>7:00 PM</strong> Dinner</li>
-            <li><strong>10:00 PM</strong> Light meal, then start fasting</li>
-          </ul>
+      <div class="reminders-layout">
+        <ul class="reminder-list">
+          <li>
+            <span class="reminder-icon"><i class="fas fa-stopwatch"></i></span>
+            <div>
+              <h3>Fast for 10–12 hours</h3>
+              <p>Follow the fasting schedule for the batch you choose.</p>
+            </div>
+          </li>
+          <li>
+            <span class="reminder-icon"><i class="fas fa-droplet-slash"></i></span>
+            <div>
+              <h3>No water or other drinks</h3>
+              <p>After your light meal, have nothing to eat or drink until your blood is collected.</p>
+            </div>
+          </li>
+          <li>
+            <span class="reminder-icon"><i class="fas fa-wallet"></i></span>
+            <div>
+              <h3>Pay on-site</h3>
+              <p>No payment is needed to pre-register. Payment is collected on the event day.</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="schedule-card">
+          <h3>Fasting schedule</h3>
+          <p class="schedule-sub">Choose your batch when you register.</p>
+          <table class="schedule-table">
+            <thead>
+              <tr>
+                <th scope="col">Batch</th>
+                <th scope="col">Blood collection</th>
+                <th scope="col">Dinner</th>
+                <th scope="col">Light meal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Batch"><span class="batch-pill">Batch 1</span></td>
+                <td data-label="Blood collection">7:00 – 9:00 AM</td>
+                <td data-label="Dinner">7:00 PM</td>
+                <td data-label="Light meal">9:00 PM</td>
+              </tr>
+              <tr>
+                <td data-label="Batch"><span class="batch-pill">Batch 2</span></td>
+                <td data-label="Blood collection">8:00 – 10:00 AM</td>
+                <td data-label="Dinner">7:00 PM</td>
+                <td data-label="Light meal">10:00 PM</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="schedule-note"><i class="fas fa-circle-info"></i> Your fasting starts right after your light meal.</p>
         </div>
       </div>
-      <p class="fasting-note">After your light meal, don't eat or drink anything, including water, until your blood is collected.</p>
     </div>
   </section>
 

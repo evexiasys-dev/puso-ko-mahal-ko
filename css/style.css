@@ -646,107 +646,156 @@ img {
 .reminders-section {
     background: linear-gradient(135deg, var(--forest-2), var(--forest));
     color: var(--white);
-    padding: 64px 40px;
+    padding: 80px 40px;
 }
 
-.reminders-section h2 {
-    text-align: center;
-    font-size: clamp(26px, 3.2vw, 34px);
-    font-weight: 800;
-    margin-bottom: 40px;
-    letter-spacing: -0.5px;
-}
-
-.reminders-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 28px;
-    max-width: 1200px;
+.reminders-inner {
+    max-width: 1120px;
     margin: 0 auto;
 }
 
-.reminder-item {
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    font-weight: 600;
+.reminders-head {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.reminders-head .section-eyebrow {
+    color: var(--gold);
+}
+
+.reminders-head h2 {
+    font-size: clamp(28px, 3.4vw, 38px);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.reminders-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 28px;
+    align-items: start;
+}
+
+.reminder-list {
+    list-style: none;
+    display: grid;
     gap: 14px;
 }
 
-.reminder-item i {
-    font-size: 22px;
-    color: var(--gold);
-    background: rgba(255, 255, 255, 0.08);
+.reminder-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-md);
+}
+
+.reminder-icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    width: 56px;
-    height: 56px;
+    background: rgba(242, 193, 102, 0.14);
+    color: var(--gold);
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
+    font-size: 18px;
 }
 
-/* Fasting guide (per blood collection batch) */
-.fasting-guide {
-    max-width: 900px;
-    margin: 48px auto 0;
-    text-align: center;
+.reminder-list h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
 }
 
-.fasting-guide h3 {
-    font-size: 22px;
+.reminder-list p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Fasting schedule card */
+.schedule-card {
+    background: var(--white);
+    color: var(--text-dark);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    box-shadow: var(--shadow-lg);
+}
+
+.schedule-card h3 {
+    font-size: 20px;
     font-weight: 800;
-    margin-bottom: 20px;
+    color: var(--forest);
 }
 
-.batch-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+.schedule-sub {
+    font-size: 14px;
+    color: var(--text-gray);
+    margin: 2px 0 18px;
 }
 
-.batch-card {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    border-radius: var(--radius-md);
-    padding: 22px 24px;
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 15px;
+}
+
+.schedule-table th {
     text-align: left;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-gray);
+    padding: 0 12px 10px;
+    border-bottom: 2px solid var(--border);
 }
 
-.batch-name {
+.schedule-table td {
+    padding: 16px 12px;
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.schedule-table th:first-child,
+.schedule-table td:first-child {
+    padding-left: 0;
+}
+
+.schedule-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.batch-pill {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: rgba(52, 179, 95, 0.12);
+    color: var(--dark-green);
     font-size: 13px;
     font-weight: 800;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
 }
 
-.batch-time {
-    font-size: 18px;
-    font-weight: 700;
-    margin: 4px 0 14px;
-}
-
-.batch-steps {
-    list-style: none;
-    display: grid;
+.schedule-note {
+    display: flex;
+    align-items: center;
     gap: 8px;
-    font-size: 15px;
-    color: rgba(255, 255, 255, 0.9);
-}
-
-.batch-steps strong {
-    display: inline-block;
-    min-width: 82px;
-    color: var(--white);
-}
-
-.fasting-note {
-    margin-top: 18px;
-    font-size: 15px;
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: var(--light-bg);
+    font-size: 14px;
     font-weight: 600;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--text-dark);
+}
+
+.schedule-note i {
+    color: var(--primary-green);
 }
 
 /* ==================== Event Details ==================== */
@@ -1455,9 +1504,12 @@ select.form-control {
 
 /* ==================== Responsive ==================== */
 @media (max-width: 1024px) {
-    .highlights-grid,
-    .reminders-grid {
+    .highlights-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .reminders-layout {
+        grid-template-columns: 1fr;
     }
 
     .details-grid,
@@ -1545,7 +1597,11 @@ select.form-control {
     }
 
     .reminders-section {
-        padding: 52px 16px;
+        padding: 56px 16px;
+    }
+
+    .schedule-card {
+        padding: 22px 18px;
     }
 
     .packages-grid {
@@ -1651,12 +1707,49 @@ select.form-control {
         height: 1px;
     }
 
-    .batch-grid {
-        grid-template-columns: 1fr;
+    /* Schedule table becomes one labelled card per batch */
+    .schedule-table thead {
+        display: none;
+    }
+
+    .schedule-table tbody {
+        display: grid;
+        gap: 12px;
+    }
+
+    .schedule-table tr {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 16px;
+        padding: 16px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+    }
+
+    .schedule-table td,
+    .schedule-table td:first-child {
+        padding: 0;
+        border: none;
+        white-space: normal;
+    }
+
+    /* Batch and blood collection span the card; dinner and light meal share a row */
+    .schedule-table td:nth-child(-n+2) {
+        grid-column: 1 / -1;
+    }
+
+    .schedule-table td:not(:first-child)::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: var(--text-gray);
+        margin-bottom: 2px;
     }
 
     .highlights-grid,
-    .reminders-grid,
     .radio-group {
         grid-template-columns: 1fr;
     }
