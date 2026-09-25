@@ -13,7 +13,8 @@ const sample = {
   email: 'juan.delacruz@gmail.com',
   contact: '09171234567',
   address: 'Dita, Santa Rosa, Laguna',
-  package: 'Package B (850)'
+  package: 'Package B (850)',
+  batch: 'Batch 1 (7-9 AM)'
 };
 
 fs.writeFileSync(path.join(__dirname, 'preview-confirmation.html'), createConfirmationEmailHTML(sample));

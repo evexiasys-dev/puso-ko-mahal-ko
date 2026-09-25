@@ -217,8 +217,8 @@ document.addEventListener('DOMContentLoaded', function () {
   function isFormComplete() {
     const filled = Array.from(form.querySelectorAll('input[required]:not([type="radio"]), select[required]'))
       .every(input => input.value.trim() !== '');
-    const packageChosen = !!form.querySelector('input[name="Package"]:checked');
-    return filled && packageChosen && isBirthdayValid() && isEmailValid() && isContactValid();
+    const choicesMade = ['Package', 'Batch'].every(name => form.querySelector(`input[name="${name}"]:checked`));
+    return filled && choicesMade && isBirthdayValid() && isEmailValid() && isContactValid();
   }
 
   function checkForm() {

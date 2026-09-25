@@ -687,6 +687,68 @@ img {
     flex-shrink: 0;
 }
 
+/* Fasting guide (per blood collection batch) */
+.fasting-guide {
+    max-width: 900px;
+    margin: 48px auto 0;
+    text-align: center;
+}
+
+.fasting-guide h3 {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.batch-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.batch-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: var(--radius-md);
+    padding: 22px 24px;
+    text-align: left;
+}
+
+.batch-name {
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+.batch-time {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 4px 0 14px;
+}
+
+.batch-steps {
+    list-style: none;
+    display: grid;
+    gap: 8px;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.batch-steps strong {
+    display: inline-block;
+    min-width: 82px;
+    color: var(--white);
+}
+
+.fasting-note {
+    margin-top: 18px;
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+}
+
 /* ==================== Event Details ==================== */
 .details-grid {
     display: grid;
@@ -1023,6 +1085,13 @@ select.form-control {
 .radio-option:has(input:checked) {
     border-color: var(--primary-green);
     background: rgba(52, 179, 95, 0.06);
+}
+
+.radio-option small {
+    display: block;
+    font-size: 12px;
+    color: var(--text-gray);
+    margin-top: 2px;
 }
 
 .radio-option input {
@@ -1580,6 +1649,10 @@ select.form-control {
     .partnership-divider {
         width: 64px;
         height: 1px;
+    }
+
+    .batch-grid {
+        grid-template-columns: 1fr;
     }
 
     .highlights-grid,

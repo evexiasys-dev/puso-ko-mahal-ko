@@ -218,17 +218,40 @@
         <span>10–12 hours fasting required</span>
       </div>
       <div class="reminder-item">
-        <i class="fas fa-tint"></i>
-        <span>Water is allowed</span>
+        <i class="fas fa-droplet-slash"></i>
+        <span>No water or other drinks while fasting</span>
       </div>
       <div class="reminder-item">
         <i class="fas fa-syringe"></i>
-        <span>Blood extraction from 7:00 AM to 12:00 PM</span>
+        <span>Blood collection by batch you choose</span>
       </div>
       <div class="reminder-item">
         <i class="fas fa-wallet"></i>
         <span>Payment is collected on-site</span>
       </div>
+    </div>
+
+    <div class="fasting-guide">
+      <h3>Fasting Guide</h3>
+      <div class="batch-grid">
+        <div class="batch-card">
+          <p class="batch-name">Batch 1</p>
+          <p class="batch-time">Blood collection 7:00 – 9:00 AM</p>
+          <ul class="batch-steps">
+            <li><strong>7:00 PM</strong> Dinner</li>
+            <li><strong>9:00 PM</strong> Light meal, then start fasting</li>
+          </ul>
+        </div>
+        <div class="batch-card">
+          <p class="batch-name">Batch 2</p>
+          <p class="batch-time">Blood collection 8:00 – 10:00 AM</p>
+          <ul class="batch-steps">
+            <li><strong>7:00 PM</strong> Dinner</li>
+            <li><strong>10:00 PM</strong> Light meal, then start fasting</li>
+          </ul>
+        </div>
+      </div>
+      <p class="fasting-note">After your light meal, don't eat or drink anything, including water, until your blood is collected.</p>
     </div>
   </section>
 
@@ -249,8 +272,9 @@
           <div class="info-row">
             <i class="fas fa-syringe"></i>
             <div>
-              <strong>Blood Extraction</strong>
-              7:00 AM – 12:00 PM
+              <strong>Blood Collection</strong>
+              Batch 1: 7:00 – 9:00 AM<br>
+              Batch 2: 8:00 – 10:00 AM
             </div>
           </div>
           <div class="info-row">
@@ -406,6 +430,20 @@
             <label class="radio-option">
               <input type="radio" name="Package" value="Package B (850)" required>
               <span><strong>Package B</strong> · ₱850 · 8 tests</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Blood collection batch</label>
+          <div class="radio-group">
+            <label class="radio-option">
+              <input type="radio" name="Batch" value="Batch 1 (7-9 AM)" required>
+              <span><strong>Batch 1</strong> · 7:00 – 9:00 AM<small>Dinner 7 PM · light meal by 9 PM</small></span>
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="Batch" value="Batch 2 (8-10 AM)" required>
+              <span><strong>Batch 2</strong> · 8:00 – 10:00 AM<small>Dinner 7 PM · light meal by 10 PM</small></span>
             </label>
           </div>
         </div>

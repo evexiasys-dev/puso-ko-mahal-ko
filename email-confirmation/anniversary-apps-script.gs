@@ -30,7 +30,7 @@ const CONFIG = {
   EVENT_SHEET_NAME: 'Oct 16 Anniversary',
   // Must match the form field names on the website (index.html).
   HEADERS: ['timestamp', 'First Name', 'Middle Name', 'Last Name', 'Suffix', 'Birthday', 'Age', 'Sex', 'Status',
-    'Email', 'Contact', 'Barangay', 'City', 'Province', 'Package', 'Confirmation Sent', 'Reminder Sent'],
+    'Email', 'Contact', 'Barangay', 'City', 'Province', 'Package', 'Batch', 'Confirmation Sent', 'Reminder Sent'],
 
   CONFIRMATION_HEADER: 'Confirmation Sent',
   REMINDER_HEADER: 'Reminder Sent',
@@ -44,7 +44,11 @@ const CONFIG = {
 
 const EVENT = {
   DATE: 'Friday, October 16, 2026',
-  BLOOD_EXTRACTION: '7:00 AM – 12:00 PM',
+  // Blood collection batches the patient picks on the form, with their fasting schedule
+  BATCHES: [
+    { name: 'Batch 1', time: '7:00 – 9:00 AM', dinner: '7:00 PM', lightMeal: '9:00 PM' },
+    { name: 'Batch 2', time: '8:00 – 10:00 AM', dinner: '7:00 PM', lightMeal: '10:00 PM' }
+  ],
   CONSULTATION: '7:00 AM – 2:00 PM',
   DOCTOR: 'Dr. Vico F. Escueta',
   DOCTOR_TITLE: 'Family Physician · Integrative Medicine & Naturopathy',
@@ -275,7 +279,7 @@ function participantFromRow_(sheet, row) {
   const middle = String(get('Middle Name')).toUpperCase() === 'N/A' ? '' : get('Middle Name');
   const name = [get('First Name'), middle, get('Last Name'), get('Suffix')].filter(String).join(' ') || get('Name');
   const address = [get('Barangay'), get('City'), get('Province')].filter(String).join(', ');
-  return { name: name, email: get('Email'), contact: get('Contact'), address: address, package: get('Package') };
+  return { name: name, email: get('Email'), contact: get('Contact'), address: address, package: get('Package'), batch: get('Batch') };
 }
 
 function trackingHeader_(emailType) {
@@ -341,6 +345,23 @@ function packageDetails_(pkg) {
     name: isB ? 'Package B · ₱850 · 8 Tests' : 'Package A · ₱600 · 6 Tests',
     tests: tests.join('')
   };
+}
+
+/** The patient's batch from the sheet value ("Batch 2 (8-10 AM)" → Batch 2), or null if none. */
+function batchDetails_(value) {
+  const str = String(value || '');
+  if (!str) return null;
+  return str.indexOf('2') !== -1 ? EVENT.BATCHES[1] : EVENT.BATCHES[0];
+}
+
+/** Fasting instructions for the patient's batch, or for both batches if none was chosen. */
+function fastingSteps_(p) {
+  const batch = batchDetails_(p.batch);
+  const batches = batch ? [batch] : EVENT.BATCHES;
+  return batches.map(function (b) {
+    return (batch ? '' : b.name + ': ') + 'Dinner at <strong>' + b.dinner + '</strong>, light meal by <strong>' + b.lightMeal +
+      '</strong>, then fast until your blood collection (' + b.time + ')';
+  });
 }
 
 function label_(text) {
@@ -431,11 +452,15 @@ function emailLayout_(title, headerHtml, bodyRows) {
     '</table></td></tr></table></body></html>';
 }
 
-function eventInfoCard_(opts) {
+function eventInfoCard_(p) {
+  const batch = batchDetails_(p.batch);
+  const collection = batch
+    ? value_(batch.name + ' · ' + batch.time, 'font-weight:600;')
+    : EVENT.BATCHES.map(function (b) { return value_(b.name + ' · ' + b.time); }).join('');
   const rows =
     infoRow_('📆', 'Date', value_(EVENT.DATE, 'font-weight:600;'), true) +
-    infoRow_('🩸', 'Blood Extraction', value_(EVENT.BLOOD_EXTRACTION) +
-      (opts && opts.arriveEarly ? value_('Please arrive early to avoid long waits.', 'font-size:13px;color:' + COLORS.muted + ';') : '')) +
+    infoRow_('🩸', 'Blood Collection', collection +
+      value_('Please arrive on time for your batch.', 'font-size:13px;color:' + COLORS.muted + ';')) +
     infoRow_('🩺', 'FREE Consultation',
       value_(EVENT.CONSULTATION) +
       value_(EVENT.DOCTOR, 'font-weight:600;') +
@@ -499,22 +524,23 @@ function createConfirmationEmailHTML(p) {
       infoRow_('📱', 'Contact Number', value_(esc_(p.contact))) +
       (p.address ? infoRow_('🏠', 'Address', value_(esc_(p.address))) : '') +
       infoRow_('🧪', 'Selected Package', value_(esc_(p.package), 'color:' + COLORS.darkCoral + ';font-weight:700;')) +
+      (p.batch ? infoRow_('⏰', 'Blood Collection Batch', value_(esc_(p.batch), 'font-weight:700;')) : '') +
       '</table>',
       'background-color:' + COLORS.cream + ';border:1px solid ' + COLORS.border + ';'
     )) +
 
-    section_(heading_('Event Information') + eventInfoCard_({ arriveEarly: true })) +
+    section_(heading_('Event Information') + eventInfoCard_(p)) +
 
     section_(heading_('Package Inclusions') + packageCard_(p)) +
 
     section_(card_(
       '<h3 style="color:#B45309;font-size:16px;margin:0 0 14px 0;font-weight:800;">Important Reminders</h3>' +
       reminderList_([
-        '<strong>• Fasting required:</strong> 10–12 hours before your blood extraction',
-        '<strong>• Water is allowed</strong> during the fasting period',
-        '<strong>• Blood extraction</strong> runs from 7:00 AM to 12:00 PM; come early',
+        '<strong>• Fasting required:</strong> 10–12 hours before your blood collection'
+      ].concat(fastingSteps_(p).map(function (step) { return '• ' + step; })).concat([
+        '<strong>• No water or other drinks</strong> while fasting',
         '<strong>• No payment needed yet:</strong> payment is collected on-site on the event day'
-      ], '#92400E'),
+      ]), '#92400E'),
       'background-color:#FFF7E6;border-left:4px solid ' + COLORS.gold + ';'
     ));
 
@@ -541,15 +567,15 @@ function createReminderEmailHTML(p) {
     section_(card_(
       '<h3 style="color:' + COLORS.darkCoral + ';font-size:16px;margin:0 0 14px 0;font-weight:800;">⚠️ Preparation Checklist</h3>' +
       reminderList_([
-        '<strong>FASTING REQUIRED: 10–12 hours.</strong> No food or drinks except water before your blood extraction.',
-        '<strong>WATER IS ALLOWED.</strong> You may drink plain water while fasting.',
+        '<strong>FASTING TONIGHT:</strong> ' + fastingSteps_(p).join('<br>') + '.',
+        '<strong>NO WATER OR OTHER DRINKS</strong> after your light meal, until your blood is collected.',
         '<strong>BRING A VALID ID</strong> for verification.',
         '<strong>PREPARE PAYMENT.</strong> Payment is collected on-site.'
       ], COLORS.text),
       'background-color:#FEF1EF;border-left:4px solid ' + COLORS.coral + ';'
     )) +
 
-    section_(heading_('Tomorrow\'s Schedule') + eventInfoCard_({ arriveEarly: true })) +
+    section_(heading_('Tomorrow\'s Schedule') + eventInfoCard_(p)) +
 
     section_(card_(
       label_('Your Selected Package') +
