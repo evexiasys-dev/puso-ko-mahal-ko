@@ -130,26 +130,36 @@ npx http-server -p 8000
 
 ## 📁 Project Structure
 
+Working files for the current event sit at the top level; everything old lives in `BACKUP/`.
+
 ```
 puso-ko-mahal-ko/
-│
-├── index.html              # Main HTML file
-├── README.md               # Project documentation
-│
-├── css/
-│   └── style.css          # All project styles
-│
+├── index.html                  # Event page + pre-registration form
+├── privacypolicy.html          # Privacy policy
+├── css/style.css               # All site styles
 ├── js/
-│   └── main.js            # JavaScript functionality
-│
-└── assets/
-    └── images/
-        ├── favicon.png         # Browser tab icon
-        ├── EWC-logo.png        # Evexia Wellness Center logo
-        ├── header-bg.png       # Hero section background
-        ├── qualicheck-diagnostic.png # Partnership banner (QualiCheck Diagnostic Clinic)
-        └── preview.png         # Social media preview image
+│   ├── main.js                 # Navbar, form logic (names, birthday/age, barangay), submission
+│   └── ph-address-book.js      # Barangay suggestions (copied from the QualiCheck CMS)
+├── assets/images/
+│   ├── EWC-logo.png            # Evexia logo (hero)
+│   ├── favicon.png             # Browser tab icon / navbar logo
+│   ├── qualicheck-partner.png  # Partner logo (site + emails)
+│   ├── nanucell-partner.png    # Partner logo (site + emails)
+│   └── preview.png             # Social media share image
+├── email-confirmation/
+│   ├── anniversary-apps-script.gs  # Google Apps Script: saves registrations, sends the emails
+│   ├── build-previews.js           # Renders the two emails below from the script
+│   ├── preview-confirmation.html   # Confirmation email (sent automatically on registration)
+│   └── preview-reminder.html       # Reminder email (sent from the sheet menu on Oct 15)
+├── wrangler.jsonc + .assetsignore  # Cloudflare deploy config (what gets published)
+└── BACKUP/
+    ├── B1.0/                   # February 2026 Heart Month site and its email scripts
+    └── source-assets/          # Full-size originals of images no longer used directly
 ```
+
+The email templates live inside `anniversary-apps-script.gs` (`createConfirmationEmailHTML`,
+`createReminderEmailHTML`). After editing them, run `node email-confirmation/build-previews.js`
+to refresh the preview files, then paste the script into Apps Script and deploy a new version.
 
 ---
 
@@ -197,7 +207,7 @@ The form posts to a Google Apps Script web app (URL in `js/main.js`). The script
 
 > Daily email limit: ~100 recipients/day on a free Gmail account, 1,500 on Google Workspace.
 
-The older files in `email-confirmation/` are backups from the February event.
+The February event's email scripts are kept in `BACKUP/B1.0/email-confirmation/`.
 
 ### Social Media Meta Tags
 
